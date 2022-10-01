@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { fethCrawlerParms, updateCrawlerParmsPost } from './crawlerParamsApi';
+import { fethAllMakes } from './filterApiValues';
 
 
 const initialState = {
@@ -16,13 +17,24 @@ const initialState = {
         "lexus"
       ]
 
-  }
+  },
+
+  makeValues : [],
 };
 
 export const getCrawlerParams = createAsyncThunk(
   'crawlerParams/getValues',
   async ( arg, { getState }) => {
     const response = await fethCrawlerParms();
+    return response;
+  }
+);
+
+
+export const getAllMakes = createAsyncThunk(
+  'crawlerParams/getAllMakes',
+  async () => {
+    const response = await fethAllMakes()
     return response;
   }
 );
@@ -65,6 +77,10 @@ export const crawlerParamsSlice = createSlice({
         
         state.paramData  = action.payload;
       })
+
+      .addCase(getAllMakes.fulfilled, (state, action) => {
+        state.makeValues  = action.payload;
+      })
       ;
   },
 });
@@ -72,5 +88,6 @@ export const crawlerParamsSlice = createSlice({
 export const {  changePostalCode, changeDistanceKm } = crawlerParamsSlice.actions;
 
 export const selectCrawlerParams = (state) => state.crawlerParams.paramData;
+export const selectMakeValues = (state) => state.crawlerParams.makeValues;
 
 export default crawlerParamsSlice.reducer;

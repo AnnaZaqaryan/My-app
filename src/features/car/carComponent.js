@@ -13,12 +13,12 @@ export function CarComponent() {
 
   const page = useSelector(selectCarPage);
   const filterParams = useSelector(selectFilterParam);
-  const makeValues = useSelector(selectMakeValues);
+  
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCars())
-    dispatch(getAllMakes())
+    
   }, []);
 
   const columns = [
@@ -39,19 +39,6 @@ export function CarComponent() {
 
     <CalcParamComponent/>
     <CrawlerParamComponent/>
-      <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        value={filterParams.make}
-        label="Make"
-        onChange={ event => dispatch(changeMake(event.target.value))}
-      >
-        {makeValues.map(e => <MenuItem key={e} value={e}>{e}</MenuItem> )}
-
-        
-      </Select>
-
-
 
       <div style={{ height: 700, width: '100%' }}>
 

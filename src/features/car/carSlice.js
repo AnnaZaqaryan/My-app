@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { fethAllCars } from './carApi';
-import { fethAllMakes } from './filterApiValues';
+
 
 
 const initialState = {
@@ -9,7 +9,7 @@ const initialState = {
     total : 0
   },
 
-  makeValues : [],
+ 
 
   filterParams : {
     currentPage : 0,
@@ -29,13 +29,7 @@ export const getAllCars = createAsyncThunk(
   }
 );
 
-export const getAllMakes = createAsyncThunk(
-  'car/getAllMakes',
-  async () => {
-    const response = await fethAllMakes()
-    return response;
-  }
-);
+
 
 export const carSlice = createSlice({
   name: 'car',
@@ -49,10 +43,10 @@ export const carSlice = createSlice({
       action.asyncDispatch(getAllCars());
     },
 
-    changeMake : (state, action) => {
-      state.filterParams.make  = action.payload;
-      action.asyncDispatch(getAllCars());
-    }
+    // changeMake : (state, action) => {
+    //   state.filterParams.make  = action.payload;
+    //   action.asyncDispatch(getAllCars());
+    // }
 
   },
   // The `extraReducers` field lets the slice handle actions defined elsewhere,
@@ -68,9 +62,7 @@ export const carSlice = createSlice({
         state.page  = action.payload;
       })
 
-      .addCase(getAllMakes.fulfilled, (state, action) => {
-        state.makeValues  = action.payload;
-      })
+     
       ;
   },
 });
@@ -82,7 +74,7 @@ export const { changePage,changeMake, incrementByAmount } = carSlice.actions;
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectCarPage = (state) => state.car.page;
 export const selectFilterParam = (state) => state.car.filterParams;
-export const selectMakeValues = (state) => state.car.makeValues;
+
 
 
 
