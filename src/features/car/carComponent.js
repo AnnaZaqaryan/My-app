@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeMake, changePage, changeSort, getAllCars, getAllMakes, selectAllMakeFilterValues, selectCarPage, selectFilterParam } from '../car/carSlice';
+import { changeIsQualified, changeMake, changePage, changeSort, getAllCars, getAllMakes, selectAllMakeFilterValues, selectCarPage, selectFilterParam } from '../car/carSlice';
 
 import { DataGrid } from '@mui/x-data-grid';
 
@@ -50,8 +50,8 @@ export function CarComponent() {
   const rows = page.listings;
 
 
-  function handleChange(){
-
+  function handleChange(event){
+      dispatch(changeIsQualified(event.target.checked))
   }
 
   return (
