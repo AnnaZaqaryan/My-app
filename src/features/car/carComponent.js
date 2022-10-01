@@ -27,22 +27,21 @@ export function CarComponent() {
 
   const columns = [
 
-    { field: 'make', headerName: 'Make', width: 130 , renderCell: (params) => (
+    { field: 'make', headerName: 'Make', width: 20 , renderCell: (params) => (
       <a href={`${params.row.carUrl}`} target="_blank">{params.row.make}</a>
     )
     },
-    { field: 'year', headerName: 'Year', type: 'number', width: 100 },
-    { field: 'model', headerName: 'Model', width: 130 },
-    { field: 'style', headerName: 'Style', width: 130 },
-    { field: 'vin', headerName: 'Vin', width: 130 },
-    { field: 'mileageKm', headerName: 'Mileage Km', width: 130 },
-    { field: 'priceCad', headerName: 'Price Cad', width: 130 },
-    { field: 'mmrPriceUsd', headerName: 'MMR PriceUsd', width: 130 },
-    { field: 'convertedRate', headerName: 'Converted Rate', width: 130 },
-    { field: 'convertedPrice', headerName: 'Converted Price', width: 130 },
-    { field: 'qualifiedTime', headerName: 'Qualified Time', width: 130 },
-    { field: 'scrapedTime', headerName: 'Scraped Time', width: 150 },
-
+    { field: 'year', headerName: 'Year', type: 'number', width: 200 },
+    { field: 'model', headerName: 'Model', width: 150 },
+    { field: 'style', headerName: 'Style', width: 150 },
+    { field: 'vin', headerName: 'Vin', width: 150 },
+    { field: 'mileageKm', headerName: 'Mileage Km', width: 150 },
+    { field: 'priceCad', headerName: 'Price Cad', width: 150 },
+    { field: 'mmrPriceUsd', headerName: 'MMR PriceUsd', width: 150 },
+    { field: 'convertedRate', headerName: 'Converted Rate', width: 150 },
+    { field: 'convertedPrice', headerName: 'Converted Price', width: 150 },
+    { field: 'qualifiedTime', headerName: 'Qualified Time', width: 150 },
+    { field: 'scrapedTime', headerName: 'Scraped Time', width: 200 },
   ];
 
   const rows = page.listings;
@@ -57,9 +56,7 @@ export function CarComponent() {
           <CrawlerParamComponent />
         </Grid>
         <Grid item xs={6} md={4}>
-          {/* <ShowCrawlingComponent/> */}
-
-          <CrawlerStatusComponent></CrawlerStatusComponent>
+          <CrawlerStatusComponent/>
         </Grid>
       </Grid>
 
