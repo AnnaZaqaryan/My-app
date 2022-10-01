@@ -80,11 +80,10 @@ export const crawlerParamsSlice = createSlice({
     },
 
     addNewMake: (state, action) => {
-      console.log("new make value isssss " + action.payload)
+
       state.paramData.makes.push(action.payload);
       
     },
-
  
   },
 

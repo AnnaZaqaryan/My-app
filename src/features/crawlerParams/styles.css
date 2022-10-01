@@ -23,7 +23,7 @@
 }
 
 .crawler_param_chip{
-    margin: 6px;
+    margin: 6px !important;
 }
 .crawler_param_btn{
     margin: 20px 10px!important;
@@ -38,4 +38,10 @@
 }
 .chip{
     max-width: 393px;
+}
+
+.css-10botns-MuiInputBase-input-MuiFilledInput-input {
+    padding-top: 39px !important;
+    padding-bottom: 0px !important;
+
 }

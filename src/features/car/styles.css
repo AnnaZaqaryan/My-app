@@ -1,5 +1,9 @@
-.car_component{
-    display: flex;
-    justify-content: space-around;
+.car_component {
+    font-size: 18px;
+    height: 700;
     width: 100%;
+}
+
+.car_component_select{
+    margin: 20px 0;
 }

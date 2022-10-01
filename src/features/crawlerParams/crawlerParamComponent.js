@@ -1,5 +1,6 @@
 
-import { Button, Chip, MenuItem, Select, TextField } from '@mui/material';
+import { Button, Chip, MenuItem, Paper, Select, TextField } from '@mui/material';
+import { Stack } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -25,6 +26,12 @@ export function CrawlerParamComponent() {
     dispatch(getAllMakes())
   }, []);
   const makeValues = useSelector(selectMakeValues);
+
+
+  const handleDelete = () => {
+    console.info('You clicked the delete icon.');
+  };
+
 
   return (
     <div className="crawler_param_component">
@@ -110,16 +117,18 @@ export function CrawlerParamComponent() {
 
       </div>
       <div className="crawler_item">
+
         <div className="chip">
           {crawlerParams.makes.map((e) => (
-            <Chip key={e}
-              label={e}
-              component="a"
-              className="crawler_param_chip"
-              variant="outlined"
-            />
+              <Chip key={e}
+                label={e}
+                variant="outlined"
+                className="crawler_param_chip"
+                onDelete={handleDelete} />
           ))}
+
         </div>
+
         <Button variant="outlined" className="crawler_param_btn" onClick={e => dispatch(updateCrawlerParams())}>Update</Button>
       </div>
 

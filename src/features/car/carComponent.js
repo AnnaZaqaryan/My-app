@@ -50,8 +50,8 @@ export function CarComponent() {
   const rows = page.listings;
 
 
-  function handleChange(event){
-      dispatch(changeIsQualified(event.target.checked))
+  function handleChange(event) {
+    dispatch(changeIsQualified(event.target.checked))
   }
 
   return (
@@ -69,22 +69,21 @@ export function CarComponent() {
       </Grid>
 
 
-
       <div style={{ height: 700, width: '100%' }}>
-     Make Values <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        value={filterParams.make}
-        label="Make"
+        Make Values <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={filterParams.make}
+          label="Make"
         onChange={ event => dispatch(changeMake(event.target.value))}
-      >
+        >
         {makeValues.map(e => <MenuItem key={e} value={e}>{e}</MenuItem> )}
-      </Select>
+        </Select>
 
-      Is Qualified <Checkbox
-        checked={filterParams.isQualified}
-        onChange={handleChange}
-        inputProps={{ 'aria-label': 'controlled' }}
+          Is Qualified <Checkbox
+          checked={filterParams.isQualified}
+          onChange={handleChange}
+          inputProps={{ 'aria-label': 'controlled' }}
         />
 
         <DataGrid
@@ -98,9 +97,9 @@ export function CarComponent() {
           onPageChange={(newPage) => dispatch(changePage(newPage))}
 
           onSortModelChange={(model) => {
-            const s = { 
-              field : model[0].field,
-              dir : model[0].sort
+            const s = {
+              field: model[0].field,
+              dir: model[0].sort
             };
             dispatch(changeSort(s));
           }}
