@@ -1,11 +1,11 @@
 
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changePage, getAllCars, selectCarPage, selectFilterParam } from '../car/carSlice';
+import { changeMake, changePage, changeSort, getAllCars, getAllMakes, selectAllMakeFilterValues, selectCarPage, selectFilterParam } from '../car/carSlice';
 
 import { DataGrid } from '@mui/x-data-grid';
 
-import { Grid } from '@mui/material';
+import { Checkbox, Grid, MenuItem, Select } from '@mui/material';
 import { CalcParamComponent } from '../calcParams/calcParamComponent';
 import { CrawlerParamComponent } from '../crawlerParams/crawlerParamComponent';
 // import { ShowCrawlingComponent } from '../showCrawling/showCrawlingComponent';
@@ -17,11 +17,12 @@ export function CarComponent() {
 
   const page = useSelector(selectCarPage);
   const filterParams = useSelector(selectFilterParam);
-
+  const makeValues = useSelector(selectAllMakeFilterValues);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCars())
+    dispatch(getAllMakes())
 
   }, []);
 
@@ -48,6 +49,11 @@ export function CarComponent() {
 
   const rows = page.listings;
 
+
+  function handleChange(){
+
+  }
+
   return (
     <>
       <Grid container spacing={2}>
@@ -62,7 +68,25 @@ export function CarComponent() {
         </Grid>
       </Grid>
 
+
+
       <div style={{ height: 700, width: '100%' }}>
+     Make Values <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        value={filterParams.make}
+        label="Make"
+        onChange={ event => dispatch(changeMake(event.target.value))}
+      >
+        {makeValues.map(e => <MenuItem key={e} value={e}>{e}</MenuItem> )}
+      </Select>
+
+      Is Qualified <Checkbox
+        checked={filterParams.isQualified}
+        onChange={handleChange}
+        inputProps={{ 'aria-label': 'controlled' }}
+        />
+
         <DataGrid
           rows={rows}
           rowCount={page.total}
@@ -72,6 +96,14 @@ export function CarComponent() {
           paginationMode="server"
           pagination
           onPageChange={(newPage) => dispatch(changePage(newPage))}
+
+          onSortModelChange={(model) => {
+            const s = { 
+              field : model[0].field,
+              dir : model[0].sort
+            };
+            dispatch(changeSort(s));
+          }}
         />
       </div>
 

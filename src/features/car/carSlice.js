@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { fethAllMakes } from '../crawlerParams/filterApiValues';
 import { fethAllCars } from './carApi';
 
 
@@ -9,14 +10,25 @@ const initialState = {
     total : 0
   },
 
- 
-
   filterParams : {
     currentPage : 0,
-    make : ''
-  }
+    make : '',
+    isQualified : true,
+    sort : {
+      field : "qualifiedTime",
+      dir : "desc"
+    }
+  },
+  allMakeValues : [],
 };
 
+export const getAllMakes = createAsyncThunk(
+  'car/getAllMakes',
+  async () => {
+    const response = await fethAllMakes()
+    return response;
+  }
+);
 
 
 export const getAllCars = createAsyncThunk(
@@ -43,10 +55,21 @@ export const carSlice = createSlice({
       action.asyncDispatch(getAllCars());
     },
 
-    // changeMake : (state, action) => {
-    //   state.filterParams.make  = action.payload;
-    //   action.asyncDispatch(getAllCars());
-    // }
+    changeMake : (state, action) => {
+      state.filterParams.make  = action.payload;
+      action.asyncDispatch(getAllCars());
+    },
+
+    changeSort : (state, action) => {
+      state.filterParams.sort  = action.payload;
+      action.asyncDispatch(getAllCars());
+    },
+
+    changeIsQualified: (state, action) => {
+      state.filterParams.isQualified  = action.payload;
+      action.asyncDispatch(getAllCars());
+    },
+
 
   },
   // The `extraReducers` field lets the slice handle actions defined elsewhere,
@@ -61,19 +84,23 @@ export const carSlice = createSlice({
         
         state.page  = action.payload;
       })
-
+      .addCase(getAllMakes.fulfilled, (state, action) => {
+        state.allMakeValues  = action.payload;
+      })
      
       ;
   },
 });
 
-export const { changePage,changeMake, incrementByAmount } = carSlice.actions;
+export const { changePage,changeMake, incrementByAmount, changeSort , changeIsQualified} = carSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectCarPage = (state) => state.car.page;
 export const selectFilterParam = (state) => state.car.filterParams;
+export const selectAllMakeFilterValues = (state) => state.car.allMakeValues;
+
 
 
 
