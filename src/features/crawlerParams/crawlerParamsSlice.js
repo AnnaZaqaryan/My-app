@@ -13,9 +13,8 @@ const initialState = {
       minMileageKm: null,
       maxMileageKm: null,
     makes: [
-        "bmw",
-      "lexus"
-      ]
+
+    ]
 
   },
 
