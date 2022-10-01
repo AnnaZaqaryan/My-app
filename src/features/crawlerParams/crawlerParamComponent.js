@@ -1,17 +1,23 @@
 
-import { Button, MenuItem, Select, TextField } from '@mui/material';
-import React, { useEffect } from 'react';
+import { Button, Chip, MenuItem, Select, TextField } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-import { changeDistanceKm, changePostalCode, getAllMakes, getCrawlerParams, selectCrawlerParams, selectMakeValues, updateCrawlerParams } from './crawlerParamsSlice';
-
-
+import {
+  addNewMake,
+  changeDistanceKm, changeMaxMileageKm, changeMaxYear, changeMinMileageKm, changeMinYear, changePostalCode, getAllMakes,
+  getCrawlerParams, selectCrawlerParams, selectMakeValues, updateCrawlerParams
+}
+  from './crawlerParamsSlice';
+import './styles.css';
 
 
 export function CrawlerParamComponent() {
 
   const crawlerParams = useSelector(selectCrawlerParams);
+
+  const [make, setMake] = useState('');
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -21,39 +27,102 @@ export function CrawlerParamComponent() {
   const makeValues = useSelector(selectMakeValues);
 
   return (
-    <div>
-
-      
-<Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-       // value={filterParams.make}
-        label="Make"
-        // onChange={ event => dispatch(changeMake(event.target.value))}
-      >
-        {makeValues.map(e => <MenuItem key={e} value={e}>{e}</MenuItem> )}
-
-        
-      </Select>
-          <TextField
-            label="Postal code"
-            id="filled-hidden-label-postal"
-            value={crawlerParams.postalCode}
-            variant="filled"
-            onChange={event => dispatch(changePostalCode(event.target.value)) }
-        /> 
-
+    <div className="crawler_param_component">
+      <div className="crawler_param_item">
+        <p>Postal Code</p>
         <TextField
-            label="DistanceKm"
-            id="filled-hidden-labeld-istanceKm"
-            value={crawlerParams.distanceKm}
-            onChange={event => dispatch(changeDistanceKm(event.target.value)) }
-
-            variant="filled"
+          label="Postal code"
+          id="filled-hidden-label-postal"
+          value={crawlerParams.postalCode}
+          variant="filled"
+          onChange={event => dispatch(changePostalCode(event.target.value))}
         />
+      </div>
 
-      <Button variant="outlined" onClick={e => dispatch(updateCrawlerParams())}>Update</Button>
-      
+      <div className="crawler_param_item">
+        <p>Distance (KM)</p>
+        <TextField
+          label="DistanceKm"
+          id="filled-hidden-labeld-istanceKm"
+          value={crawlerParams.distanceKm}
+          onChange={event => dispatch(changeDistanceKm(event.target.value))}
+          variant="filled"
+        />
+      </div>
+
+      <div className="crawler_param_item">
+        <p>Min Year</p>
+        <TextField
+          label="Min Year"
+          id="filled-hidden-labeld-istanceKm"
+          value={crawlerParams.minYear}
+          onChange={event => dispatch(changeMinYear(event.target.value))}
+          variant="filled"
+        />
+      </div>
+
+      <div className="crawler_param_item">
+        <p>Max Year</p>
+        <TextField
+          label="Max Year"
+          id="filled-hidden-labeld-istanceKm"
+          value={crawlerParams.maxYear}
+          onChange={event => dispatch(changeMaxYear(event.target.value))}
+          variant="filled"
+        />
+      </div>
+
+      <div className="crawler_param_item">
+        <p>Min Mileage (KM)</p>
+        <TextField
+          label="Min MileageKm"
+          id="filled-hidden-labeld-istanceKm"
+          value={crawlerParams.minMileageKm}
+          onChange={event => dispatch(changeMinMileageKm(event.target.value))}
+          variant="filled"
+        />
+      </div>
+      <div className="crawler_param_item">
+        <p>Max Mileage (KM)</p>
+        <TextField
+          label="Max MileageKm"
+          id="filled-hidden-labeld-istanceKm"
+          value={crawlerParams.maxMileageKm}
+          onChange={event => dispatch(changeMaxMileageKm(event.target.value))}
+          variant="filled"
+        />
+      </div>
+
+      <div className="make_item">
+        <div className="crawler_param_item">
+          <p>Make</p>
+          <TextField
+            label="Make"
+            id="filled-hidden-labeld-istanceKm"
+            value={make}
+            onChange={event => setMake(event.target.value)}
+            variant="filled"
+          />
+        </div>
+        <div>
+          <Button variant="outlined" className="add_btn" onClick={e => dispatch(addNewMake(make))}>Add</Button>
+        </div>
+
+      </div>
+      <div className="crawler_item">
+        <div className="chip">
+          {crawlerParams.makes.map((e) => (
+            <Chip key={e}
+              label={e}
+              component="a"
+              className="crawler_param_chip"
+              variant="outlined"
+            />
+          ))}
+        </div>
+        <Button variant="outlined" className="crawler_param_btn" onClick={e => dispatch(updateCrawlerParams())}>Update</Button>
+      </div>
+
     </div>
   );
 }

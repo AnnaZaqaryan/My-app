@@ -14,7 +14,7 @@ const initialState = {
       maxMileageKm: null,
     makes: [
         "bmw",
-        "lexus"
+      "lexus"
       ]
 
   },
@@ -64,6 +64,27 @@ export const crawlerParamsSlice = createSlice({
     changeDistanceKm: (state, action) => {
       state.paramData.distanceKm = action.payload;
     },
+    
+    changeMinYear: (state, action) => {
+      state.paramData.minYear = action.payload;
+    },
+    changeMaxYear: (state, action) => {
+      state.paramData.maxYear = action.payload;
+    },
+
+    changeMinMileageKm: (state, action) => {
+      state.paramData.minMileageKm = action.payload;
+    },
+
+    changeMaxMileageKm: (state, action) => {
+      state.paramData.maxMileageKm = action.payload;
+    },
+
+    addNewMake: (state, action) => {
+      console.log("new make value isssss " + action.payload)
+      state.paramData.makes.push(action.payload);
+      
+    },
 
  
   },
@@ -85,7 +106,7 @@ export const crawlerParamsSlice = createSlice({
   },
 });
 
-export const {  changePostalCode, changeDistanceKm } = crawlerParamsSlice.actions;
+export const {  changePostalCode, changeDistanceKm , changeMinYear, changeMaxYear, changeMinMileageKm, changeMaxMileageKm, addNewMake} = crawlerParamsSlice.actions;
 
 export const selectCrawlerParams = (state) => state.crawlerParams.paramData;
 export const selectMakeValues = (state) => state.crawlerParams.makeValues;

@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import styles from './Counter.module.css';
 import {
   decrement,
-  increment,
-  incrementByAmount,
-  incrementAsync,
-  incrementIfOdd,
-  selectCount,
+  increment, incrementAsync, incrementByAmount, incrementIfOdd,
+  selectCount
 } from './counterSlice';
-import styles from './Counter.module.css';
-import { getAllCars, selectCarPage } from '../car/carSlice';
 
 export function Counter() {
   const count = useSelector(selectCount);
@@ -19,16 +15,6 @@ export function Counter() {
   const incrementValue = Number(incrementAmount) || 0;
 
   
-
-  useEffect (() => {
-    dispatch(getAllCars())
-  }, []);
-
-
-  const page = useSelector(selectCarPage);
-
-  
-
   return (
     <div>
       <div className={styles.row}>

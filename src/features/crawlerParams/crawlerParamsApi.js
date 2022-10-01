@@ -13,7 +13,6 @@ export function fethCrawlerParms() {
 }
 
 
-
 export function updateCrawlerParmsPost(data) {
 
   return axClinet.post(`api/crl-parm`, data)
