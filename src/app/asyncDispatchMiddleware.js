@@ -8,6 +8,7 @@ export const asyncDispatchMiddleware = store => next => action => {
     }
   
     function asyncDispatch(asyncAction) {
+      
       actionQueue = actionQueue.concat([asyncAction]);
   
       if (syncActivityFinished) {
@@ -21,7 +22,7 @@ export const asyncDispatchMiddleware = store => next => action => {
     const res = next(actionWithAsyncDispatch);
   
     syncActivityFinished = true;
-    flushQueue();
+  flushQueue();
   
     return res;
   };
