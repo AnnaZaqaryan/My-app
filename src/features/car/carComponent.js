@@ -71,7 +71,7 @@ export function CarComponent() {
 
 
       <div style={{ height: 700, width: '100%', fontSize: '18px'}}>
-        Make Values <Select
+        Make <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={filterParams.make}
