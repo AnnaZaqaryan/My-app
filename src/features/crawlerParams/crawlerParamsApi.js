@@ -2,9 +2,6 @@
 import { axClinet } from "../../axiosUtil"
 
 export function fethCrawlerParms() {
-
-  
-    
   return axClinet.get(`api/crl-parm`)
     .then(response => {
       return response.data

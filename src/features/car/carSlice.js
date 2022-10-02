@@ -41,8 +41,6 @@ export const getAllCars = createAsyncThunk(
   }
 );
 
-
-
 export const carSlice = createSlice({
   name: 'car',
   initialState,
