@@ -20,12 +20,13 @@ export function CrawlerParamComponent() {
 
   const [make, setMake] = useState('');
 
+  const makeValues = useSelector(selectMakeValues);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCrawlerParams())
     dispatch(getAllMakes())
   }, []);
-  const makeValues = useSelector(selectMakeValues);
 
 
   const handleDelete = (make) => {
