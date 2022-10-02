@@ -18,6 +18,7 @@ const initialState = {
 
   },
 
+  showPopup : true,
   makeValues : [],
 };
 
@@ -80,19 +81,17 @@ export const crawlerParamsSlice = createSlice({
     },
 
     addNewMake: (state, action) => {
-
       state.paramData.makes.push(action.payload);
-      
     },
 
     removeMake : (state, action) => {
-
       state.paramData.makes =   state.paramData.makes
       .filter( e => e  != action.payload);
-      
-      
     },
  
+    closePopup: (state, action) => {
+      state.showPopup = false;
+    },
   },
 
   extraReducers: (builder) => {
@@ -108,13 +107,21 @@ export const crawlerParamsSlice = createSlice({
       .addCase(getAllMakes.fulfilled, (state, action) => {
         state.makeValues  = action.payload;
       })
+      .addCase(updateCrawlerParams.fulfilled, (state, action) => {
+        state.showPopup = true;
+      })
+
+      
+
       ;
   },
 });
 
-export const {  changePostalCode, changeDistanceKm , changeMinYear, changeMaxYear, changeMinMileageKm, changeMaxMileageKm, addNewMake, removeMake} = crawlerParamsSlice.actions;
+export const {  changePostalCode, changeDistanceKm , changeMinYear, changeMaxYear, changeMinMileageKm, changeMaxMileageKm, addNewMake, removeMake, 
+  closePopup} = crawlerParamsSlice.actions;
 
 export const selectCrawlerParams = (state) => state.crawlerParams.paramData;
 export const selectMakeValues = (state) => state.crawlerParams.makeValues;
+export const selectShowPopup = (state) => state.crawlerParams.showPopup;
 
 export default crawlerParamsSlice.reducer;

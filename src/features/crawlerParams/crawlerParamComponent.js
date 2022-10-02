@@ -1,5 +1,5 @@
 
-import { Button, Chip, MenuItem, Paper, Select, TextField } from '@mui/material';
+import { Box, Button, Chip, MenuItem, Paper, Popper, Select, TextField } from '@mui/material';
 import { Stack } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {
   addNewMake,
-  changeDistanceKm, changeMaxMileageKm, changeMaxYear, changeMinMileageKm, changeMinYear, changePostalCode, getAllMakes,
-  getCrawlerParams, removeMake, selectCrawlerParams, selectMakeValues, updateCrawlerParams
+  changeDistanceKm, changeMaxMileageKm, changeMaxYear, changeMinMileageKm, changeMinYear, changePostalCode, closePopup, getAllMakes,
+  getCrawlerParams, removeMake, selectCrawlerParams, selectMakeValues, selectShowPopup, updateCrawlerParams
 }
   from './crawlerParamsSlice';
 import './styles.css';
@@ -17,10 +17,11 @@ import './styles.css';
 export function CrawlerParamComponent() {
 
   const crawlerParams = useSelector(selectCrawlerParams);
+  const showPopup = useSelector(selectShowPopup);
 
   const [make, setMake] = useState('');
 
-  const makeValues = useSelector(selectMakeValues);
+ const makeValues = useSelector(selectMakeValues);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -132,6 +133,13 @@ export function CrawlerParamComponent() {
         </div>
 
         <Button variant="outlined" className="crawler_param_btn" onClick={e => dispatch(updateCrawlerParams())}>Update</Button>
+
+        <Popper  open={showPopup} >
+            <Box sx={{ border: 1, p: 1, bgcolor: 'background.paper' }}>
+              The content of the Popper.
+            <Button variant="outlined" className="crawler_param_btn" onClick={e => dispatch(closePopup())}>Close Diaglog</Button>
+            </Box>
+        </Popper>
       </div>
 
     </div>
