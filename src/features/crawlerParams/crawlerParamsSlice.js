@@ -18,7 +18,7 @@ const initialState = {
 
   },
 
-  showPopup : true,
+  showPopup : false,
   makeValues : [],
 };
 

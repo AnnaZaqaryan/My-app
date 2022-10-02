@@ -21,7 +21,7 @@ export function CrawlerParamComponent() {
 
   const [make, setMake] = useState('');
 
- const makeValues = useSelector(selectMakeValues);
+  const makeValues = useSelector(selectMakeValues);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -31,7 +31,7 @@ export function CrawlerParamComponent() {
 
 
   const handleDelete = (make) => {
-    console.info('You clicked the delete icon. ' + make);
+
     dispatch(removeMake(make))
   };
 
@@ -123,22 +123,22 @@ export function CrawlerParamComponent() {
 
         <div className="chip">
           {crawlerParams.makes.map((e) => (
-              <Chip key={e}
-                label={e}
-                variant="outlined"
-                className="crawler_param_chip"
-                onDelete={event => handleDelete(e)} />
+            <Chip key={e}
+              label={e}
+              variant="outlined"
+              className="crawler_param_chip"
+              onDelete={event => handleDelete(e)} />
           ))}
 
         </div>
 
         <Button variant="outlined" className="crawler_param_btn" onClick={e => dispatch(updateCrawlerParams())}>Update</Button>
 
-        <Popper  open={showPopup} >
-            <Box sx={{ border: 1, p: 1, bgcolor: 'background.paper' }}>
-              The content of the Popper.
-            <Button variant="outlined" className="crawler_param_btn" onClick={e => dispatch(closePopup())}>Close Diaglog</Button>
-            </Box>
+        <Popper open={showPopup} >
+          <Box className="showPopup">
+            update successful!
+            <Button variant="outlined" className="crawler_param_btn" onClick={e => dispatch(closePopup())}>Close </Button>
+          </Box>
         </Popper>
       </div>
 
