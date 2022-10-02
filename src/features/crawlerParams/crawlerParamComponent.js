@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   addNewMake,
   changeDistanceKm, changeMaxMileageKm, changeMaxYear, changeMinMileageKm, changeMinYear, changePostalCode, getAllMakes,
-  getCrawlerParams, selectCrawlerParams, selectMakeValues, updateCrawlerParams
+  getCrawlerParams, removeMake, selectCrawlerParams, selectMakeValues, updateCrawlerParams
 }
   from './crawlerParamsSlice';
 import './styles.css';
@@ -28,8 +28,9 @@ export function CrawlerParamComponent() {
   const makeValues = useSelector(selectMakeValues);
 
 
-  const handleDelete = () => {
-    console.info('You clicked the delete icon.');
+  const handleDelete = (make) => {
+    console.info('You clicked the delete icon. ' + make);
+    dispatch(removeMake(make))
   };
 
 
@@ -124,7 +125,7 @@ export function CrawlerParamComponent() {
                 label={e}
                 variant="outlined"
                 className="crawler_param_chip"
-                onDelete={handleDelete} />
+                onDelete={event => handleDelete(e)} />
           ))}
 
         </div>

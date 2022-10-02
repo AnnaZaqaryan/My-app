@@ -84,6 +84,14 @@ export const crawlerParamsSlice = createSlice({
       state.paramData.makes.push(action.payload);
       
     },
+
+    removeMake : (state, action) => {
+
+      state.paramData.makes =   state.paramData.makes
+      .filter( e => e  != action.payload);
+      
+      
+    },
  
   },
 
@@ -104,7 +112,7 @@ export const crawlerParamsSlice = createSlice({
   },
 });
 
-export const {  changePostalCode, changeDistanceKm , changeMinYear, changeMaxYear, changeMinMileageKm, changeMaxMileageKm, addNewMake} = crawlerParamsSlice.actions;
+export const {  changePostalCode, changeDistanceKm , changeMinYear, changeMaxYear, changeMinMileageKm, changeMaxMileageKm, addNewMake, removeMake} = crawlerParamsSlice.actions;
 
 export const selectCrawlerParams = (state) => state.crawlerParams.paramData;
 export const selectMakeValues = (state) => state.crawlerParams.makeValues;
