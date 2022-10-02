@@ -19,11 +19,12 @@ export function CrawlerStatusComponent() {
   }
 
   const statuses = useSelector(selectCrawlerStatuses);
+  
   return (
     <div>
       {
-        statuses.map((e) => (
-          <div className="crawler_status_item" key={e.lastUpd}>
+        statuses.map((e, index) => (
+          <div key={index} className="crawler_status_item" >
             <p>{e.state} </p>
             <p>{e.status}</p>
             <p>{e.lastUpd}</p>

@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeIsQualified, changeMake, changePage, changeSort, getAllCars, getAllMakes, selectAllMakeFilterValues, selectCarPage, selectFilterParam } from '../car/carSlice';
 
@@ -69,18 +69,20 @@ export function CarComponent() {
       </Grid>
 
 
-      <div style={{ height: 700, width: '100%' }}>
+      <div style={{ height: 700, width: '100%', fontSize: '18px'}}>
         Make Values <Select
+          className="car_component_select"
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={filterParams.make}
           label="Make"
-        onChange={ event => dispatch(changeMake(event.target.value))}
+          onChange={event => dispatch(changeMake(event.target.value))}
         >
-        {makeValues.map(e => <MenuItem key={e} value={e}>{e}</MenuItem> )}
+          {makeValues.map((e, index) => (
+              <MenuItem key={index} value={e}>{e}</MenuItem>
+          ))}
         </Select>
-
-          Is Qualified <Checkbox
+         Is Qualified  <Checkbox
           checked={filterParams.isQualified}
           onChange={handleChange}
           inputProps={{ 'aria-label': 'controlled' }}
