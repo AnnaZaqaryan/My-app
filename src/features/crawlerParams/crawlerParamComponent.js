@@ -20,16 +20,17 @@ export function CrawlerParamComponent() {
 
   const [make, setMake] = useState('');
 
+  const makeValues = useSelector(selectMakeValues);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCrawlerParams())
     dispatch(getAllMakes())
   }, []);
-  const makeValues = useSelector(selectMakeValues);
 
 
   const handleDelete = () => {
-    console.info('You clicked the delete icon.');
+    console.log('ghghg')
   };
 
 
@@ -117,7 +118,6 @@ export function CrawlerParamComponent() {
 
       </div>
       <div className="crawler_item">
-
         <div className="chip">
           {crawlerParams.makes.map((e) => (
               <Chip key={e}
@@ -126,9 +126,7 @@ export function CrawlerParamComponent() {
                 className="crawler_param_chip"
                 onDelete={handleDelete} />
           ))}
-
         </div>
-
         <Button variant="outlined" className="crawler_param_btn" onClick={e => dispatch(updateCrawlerParams())}>Update</Button>
       </div>
 
