@@ -5,7 +5,7 @@ import { changeIsQualified, changeMake, changePage, changeSort, getAllCars, getA
 
 import { DataGrid } from '@mui/x-data-grid';
 
-import { Checkbox, Grid, MenuItem, Select } from '@mui/material';
+import { Checkbox, Grid, MenuItem, Select, Tooltip } from '@mui/material';
 import { CalcParamComponent } from '../calcParams/calcParamComponent';
 import { CrawlerParamComponent } from '../crawlerParams/crawlerParamComponent';
 // import { ShowCrawlingComponent } from '../showCrawling/showCrawlingComponent';
@@ -36,7 +36,13 @@ export function CarComponent() {
     },
     { field: 'year', headerName: 'Year', type: 'number', width: 80 },
     { field: 'model', headerName: 'Model', width: 110 },
-    { field: 'style', headerName: 'Style', width: 330 },
+    { field: 'style', headerName: 'Style', width: 330, 
+    renderCell: (params ) =>  (
+          <Tooltip title={params.row.style} >
+              <span className="table-cell-trucate">{params.row.style}</span>
+           </Tooltip>
+     ),
+  },
     { field: 'vin', headerName: 'Vin', width: 200 },
     { field: 'mileageKm', headerName: 'Mileage Km', width: 90 },
     { field: 'priceCad', headerName: 'Price Cad', width: 80 },
