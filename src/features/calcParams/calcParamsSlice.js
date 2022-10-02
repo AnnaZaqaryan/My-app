@@ -26,7 +26,7 @@ export const updateCalcParams = createAsyncThunk(
     const state = getState();
     const response = await updateCalcParmsPost(state.calcParams.paramData);
 
-    dispatch(showPopup());
+    dispatch(showPopup("Calc params updated"));
     return response;
   }
 );

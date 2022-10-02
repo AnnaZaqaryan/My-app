@@ -45,7 +45,7 @@ export const updateCrawlerParams = createAsyncThunk(
 
     const state = getState();
     const response = await updateCrawlerParmsPost(state.crawlerParams.paramData);
-    dispatch(showPopup());
+    dispatch(showPopup('Crawler params updated'));
 
     return response;
   }

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { fethAllMakes } from '../crawlerParams/filterApiValues';
-import { fethAllCars } from './carApi';
+import { exportDataApi, fethAllCars } from './carApi';
 
 
 
@@ -26,6 +26,15 @@ export const getAllMakes = createAsyncThunk(
   'car/getAllMakes',
   async () => {
     const response = await fethAllMakes()
+    return response;
+  }
+);
+
+export const exportData = createAsyncThunk(
+  'car/exportData',
+  async (arg, { getState }) => {
+    const state = getState();
+    const response = await exportDataApi(state.car.filterParams)
     return response;
   }
 );

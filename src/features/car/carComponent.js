@@ -1,11 +1,11 @@
 
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeIsQualified, changeMake, changePage, changeSort, getAllCars, getAllMakes, selectAllMakeFilterValues, selectCarPage, selectFilterParam } from '../car/carSlice';
+import { changeIsQualified, changeMake, changePage, changeSort, exportData, getAllCars, getAllMakes, selectAllMakeFilterValues, selectCarPage, selectFilterParam } from '../car/carSlice';
 
 import { DataGrid } from '@mui/x-data-grid';
 
-import { Checkbox, Grid, InputLabel, MenuItem, Select, Tooltip } from '@mui/material';
+import { Button, Checkbox, Grid, InputLabel, MenuItem, Select, Tooltip } from '@mui/material';
 import { CalcParamComponent } from '../calcParams/calcParamComponent';
 import { CrawlerParamComponent } from '../crawlerParams/crawlerParamComponent';
 // import { ShowCrawlingComponent } from '../showCrawling/showCrawlingComponent';
@@ -173,15 +173,18 @@ export function CarComponent() {
 
 
       <div style={{ height: 700, width: '100%', fontSize: '18px' }}>
-        <div className="car_component_item">
+     <div className='car_component'>
+     <div className="car_component_item">
           Make <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={filterParams.make}
             label="Make"
+            // defaultValue={''}
             className="car_component_select"
             onChange={event => dispatch(changeMake(event.target.value))}
           >
+            <MenuItem key={'All'} value={''}>{'All'}</MenuItem>
             {makeValues.map(e => <MenuItem key={e} value={e}>{e}</MenuItem>)}
           </Select>
           Is Qualified <Checkbox
@@ -190,6 +193,9 @@ export function CarComponent() {
             inputProps={{ 'aria-label': 'controlled' }}
           />
         </div>
+        <Button variant="outlined" className="add_btn" onClick={e => dispatch(exportData())}>Export</Button>
+
+     </div>
         <DataGrid
           rows={rows}
           rowCount={page.total}

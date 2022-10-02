@@ -16,3 +16,8 @@
     align-items: baseline;
     margin: 0 10px;
 }
+.car_component{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
