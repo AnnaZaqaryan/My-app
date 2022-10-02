@@ -11,6 +11,7 @@ import { CrawlerParamComponent } from '../crawlerParams/crawlerParamComponent';
 // import { ShowCrawlingComponent } from '../showCrawling/showCrawlingComponent';
 import './styles.css';
 import { CrawlerStatusComponent } from '../crawlerStatus/crawlerStatusComponent';
+import { PopupComponent } from '../popup/poupComponent';
 
 
 export function CarComponent() {
@@ -63,6 +64,7 @@ export function CarComponent() {
 
   return (
     <>
+      
       <Grid container spacing={2}>
         <Grid item xs={6} md={4}>
           <CalcParamComponent />

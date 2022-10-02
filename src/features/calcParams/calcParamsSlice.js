@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { showPopup } from '../popup/popupSlice';
 import { fethCalcParms, updateCalcParmsPost } from './calcParamsApi';
 
 
@@ -20,10 +21,12 @@ export const getCalcParams = createAsyncThunk(
 
 export const updateCalcParams = createAsyncThunk(
   'calcParams/updateParams',
-  async ( arg, { getState }) => {
+  async ( arg, { getState , dispatch}) => {
 
     const state = getState();
     const response = await updateCalcParmsPost(state.calcParams.paramData);
+
+    dispatch(showPopup());
     return response;
   }
 );

@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { showPopup } from '../popup/popupSlice';
 import { fethCrawlerParms, updateCrawlerParmsPost } from './crawlerParamsApi';
 import { fethAllMakes } from './filterApiValues';
 
@@ -17,8 +18,6 @@ const initialState = {
     ]
 
   },
-
-  showPopup : false,
   makeValues : [],
 };
 
@@ -42,10 +41,12 @@ export const getAllMakes = createAsyncThunk(
 
 export const updateCrawlerParams = createAsyncThunk(
   'crawlerParams/updateParams',
-  async ( arg, { getState }) => {
+  async ( arg, { getState, dispatch }) => {
 
     const state = getState();
     const response = await updateCrawlerParmsPost(state.crawlerParams.paramData);
+    dispatch(showPopup());
+
     return response;
   }
 );
@@ -89,9 +90,7 @@ export const crawlerParamsSlice = createSlice({
       .filter( e => e  != action.payload);
     },
  
-    closePopup: (state, action) => {
-      state.showPopup = false;
-    },
+
   },
 
   extraReducers: (builder) => {
@@ -110,6 +109,7 @@ export const crawlerParamsSlice = createSlice({
       .addCase(updateCrawlerParams.fulfilled, (state, action) => {
         state.showPopup = true;
       })
+      
 
       
 
@@ -117,11 +117,11 @@ export const crawlerParamsSlice = createSlice({
   },
 });
 
-export const {  changePostalCode, changeDistanceKm , changeMinYear, changeMaxYear, changeMinMileageKm, changeMaxMileageKm, addNewMake, removeMake, 
-  closePopup} = crawlerParamsSlice.actions;
+export const {  changePostalCode, changeDistanceKm , changeMinYear, changeMaxYear, changeMinMileageKm, changeMaxMileageKm, addNewMake, removeMake
+  } = crawlerParamsSlice.actions;
 
 export const selectCrawlerParams = (state) => state.crawlerParams.paramData;
 export const selectMakeValues = (state) => state.crawlerParams.makeValues;
-export const selectShowPopup = (state) => state.crawlerParams.showPopup;
+
 
 export default crawlerParamsSlice.reducer;
