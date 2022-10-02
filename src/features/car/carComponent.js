@@ -31,12 +31,12 @@ export function CarComponent() {
   const columns = [
 
     {
-      field: 'make', headerName: 'Make', width: 20, renderCell: (params) => (
+      field: 'make', headerName: 'Make', width: 80, renderCell: (params) => (
         <a href={`${params.row.carUrl}`} target="_blank">{params.row.make}</a>
       )
     },
-    { field: 'year', headerName: 'Year', type: 'number', width: 80 },
-    { field: 'model', headerName: 'Model', width: 110 },
+    { field: 'year', headerName: 'Year' },
+    { field: 'model', headerName: 'Model', width: 90 },
     { field: 'style', headerName: 'Style', width: 330, 
     renderCell: (params ) =>  (
           <Tooltip title={params.row.style} >
@@ -45,13 +45,15 @@ export function CarComponent() {
      ),
   },
     { field: 'vin', headerName: 'Vin', width: 200 },
-    { field: 'mileageKm', headerName: 'Mileage Km', width: 90 },
-    { field: 'priceCad', headerName: 'Price Cad', width: 80 },
-    { field: 'mmrPriceUsd', headerName: 'MMR PriceUsd', width: 80 },
-    { field: 'convertedRate', headerName: 'Converted Rate', width: 80 },
-    { field: 'convertedPrice', headerName: 'Converted Price', width: 80 },
-    { field: 'isQualified', headerName: 'isQualified', width: 80 },
-    { field: 'qualifiedTime', headerName: 'Qualified Time', width: 200 },
+    { field: 'mileageKm', headerName: 'Mileage Km', width: 100 },
+    { field: 'mileageMile', headerName: 'Mileage Mile', width: 100 },
+    { field: 'priceCad', headerName: 'Price Cad', width: 100 },
+    { field: 'priceUsd', headerName: 'Price Usd', width: 100 },
+    { field: 'mmrPriceUsd', headerName: 'MMR PriceUsd', width: 130 },
+    { field: 'convertedRate', headerName: 'Converted Rate', width: 130 },
+    { field: 'convertedPrice', headerName: 'Converted Price', width: 130 },
+    { field: 'isQualified', headerName: 'isQualified', width: 100 },
+    { field: 'qualifiedTime', headerName: 'Qualified Time', width: 130 },
     { field: 'scrapedTime', headerName: 'Scraped Time', width: 200 },
   ];
 
