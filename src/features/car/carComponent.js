@@ -80,7 +80,7 @@ export function CarComponent() {
       ),
     },
     {
-      field: 'vin', headerName: 'Vin', width: 200,
+      field: 'vin', headerName: 'VIN', width: 200,
 
       renderCell: (params) => (
         <Tooltip title={params.row.vin} >
@@ -89,7 +89,7 @@ export function CarComponent() {
       ),
     },
     {
-      field: 'mileageKm', headerName: 'Mileage Km', width: 100,
+      field: 'mileageKm', headerName: 'KMs', width: 100,
       renderCell: (params) => (
         <Tooltip title={params.row.mileageKm} >
           <span className="table-cell-trucate">{params.row.mileageKm}</span>
@@ -97,7 +97,7 @@ export function CarComponent() {
       ),
     },
     {
-      field: 'mileageMile', headerName: 'Mileage Mile', width: 100,
+      field: 'mileageMile', headerName: 'Miles', width: 100,
       renderCell: (params) => (
         <Tooltip title={params.row.mileageMile} >
           <span className="table-cell-trucate">{params.row.mileageMile}</span>
@@ -105,7 +105,7 @@ export function CarComponent() {
       ),
     },
     {
-      field: 'priceCad', headerName: 'Price Cad', width: 100,
+      field: 'priceCad', headerName: 'Website Price (CAD)', width: 150,
       renderCell: (params) => (
         <Tooltip title={params.row.priceCad} >
           <span className="table-cell-trucate">{params.row.priceCad}</span>
@@ -129,7 +129,7 @@ export function CarComponent() {
       ),
     },
     {
-      field: 'convertedRate', headerName: 'Converted Rate', width: 130,
+      field: 'convertedRate', headerName: 'MMR Price (USD)', width: 130,
       renderCell: (params) => (
         <Tooltip title={params.row.convertedRate} >
           <span className="table-cell-trucate">{params.row.convertedRate}</span>
@@ -137,7 +137,7 @@ export function CarComponent() {
       ),
     },
     {
-      field: 'convertedPrice', headerName: 'Converted Price', width: 130,
+      field: 'convertedPrice', headerName: 'Logic Price (CAD)', width: 150,
       renderCell: (params) => (
         <Tooltip title={params.row.convertedPrice} >
           <span className="table-cell-trucate">{params.row.convertedPrice}</span>
@@ -162,7 +162,7 @@ export function CarComponent() {
       ),
     },
     {
-      field: 'scrapedTime', headerName: 'Scraped Time', width: 200,
+      field: 'scrapedTime', headerName: 'Crawl Time', width: 200,
       renderCell: (params) => (
         <Tooltip title={params.row.scrapedTime} >
           <span className="table-cell-trucate">{params.row.scrapedTime}</span>
