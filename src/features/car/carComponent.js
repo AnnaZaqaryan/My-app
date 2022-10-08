@@ -1,17 +1,17 @@
 
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeIsQualified, changeMake, changePage, changeSort, exportData, getAllCars, getAllMakes, selectAllMakeFilterValues, selectCarPage, selectFilterParam } from '../car/carSlice';
+import { addDelateId, changeIsQualified, changeMake, changePage, changeSort, deleteCars, exportData, getAllCars, getAllMakes, removeDelatedId, selectAllMakeFilterValues, selectCarPage, selectFilterParam } from '../car/carSlice';
 
 import { DataGrid } from '@mui/x-data-grid';
 
 import { Button, Checkbox, Grid, InputLabel, MenuItem, Select, Tooltip } from '@mui/material';
 import { CalcParamComponent } from '../calcParams/calcParamComponent';
 import { CrawlerParamComponent } from '../crawlerParams/crawlerParamComponent';
-// import { ShowCrawlingComponent } from '../showCrawling/showCrawlingComponent';
-import './styles.css';
+
 import { CrawlerStatusComponent } from '../crawlerStatus/crawlerStatusComponent';
-import { PopupComponent } from '../popup/poupComponent';
+
+import './styles.css';
 
 
 export function CarComponent() {
@@ -24,17 +24,36 @@ export function CarComponent() {
   useEffect(() => {
     dispatch(getAllCars())
     dispatch(getAllMakes())
-
   }, []);
 
 
-  const columns = [
+  const handleDelateCheckbox = (event, id) => {
+    console.log("idddd " + id);
+    console.log("evtn  " + event.target.checked)
+    if (event.target.checked) {
 
+      dispatch(addDelateId(id))
+    } else {
+      dispatch(removeDelatedId(id))
+    }
+  };
+
+  const columns = [
     {
+      field: 'id', headerName: '', width: 80,
+      renderCell: (params) => (
+        <Checkbox
+          onChange={event => handleDelateCheckbox(event, params.row.id)}
+          inputProps={{ 'aria-label': 'controlled' }}
+        />
+      ),
+    },
+    {
+
       field: 'make', headerName: 'Make', width: 80,
       renderCell: (params) => (
         <a href={`${params.row.carUrl}`} target="_blank">{params.row.make}</a>
-      )
+      ),
     },
     {
       field: 'year', headerName: 'Year',
@@ -125,11 +144,12 @@ export function CarComponent() {
         </Tooltip>
       ),
     },
+
     {
       field: 'isQualified', headerName: 'isQualified', width: 100,
       renderCell: (params) => (
         <Tooltip title={params.row.isQualified} >
-          <span className="table-cell-trucate">{params.row.isQualified}</span>
+          <span className="table-cell-trucate">{'' + params.row.isQualified}</span>
         </Tooltip>
       ),
     },
@@ -157,6 +177,10 @@ export function CarComponent() {
     dispatch(changeIsQualified(event.target.checked))
   }
 
+  function handDelete(event) {
+    dispatch(deleteCars())
+  }
+
   return (
     <>
       <Grid container spacing={2}>
@@ -171,31 +195,34 @@ export function CarComponent() {
         </Grid>
       </Grid>
 
-
       <div style={{ height: 700, width: '100%', fontSize: '18px' }}>
-     <div className='car_component'>
-     <div className="car_component_item">
-          Make <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={filterParams.make}
-            label="Make"
-            // defaultValue={''}
-            className="car_component_select"
-            onChange={event => dispatch(changeMake(event.target.value))}
-          >
-            <MenuItem key={'All'} value={''}>{'All'}</MenuItem>
-            {makeValues.map(e => <MenuItem key={e} value={e}>{e}</MenuItem>)}
-          </Select>
-          Is Qualified <Checkbox
-            checked={filterParams.isQualified}
-            onChange={handleChange}
-            inputProps={{ 'aria-label': 'controlled' }}
-          />
-        </div>
-        <Button variant="outlined" className="add_btn" onClick={e => dispatch(exportData())}>Export</Button>
+        <div className='car_component'>
+          <div className="car_component_item">
+            Make <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={filterParams.make}
+              label="Make"
+              // defaultValue={''}
+              className="car_component_select"
+              onChange={event => dispatch(changeMake(event.target.value))}
+            >
+              <MenuItem key={'All'} value={''}>{'All'}</MenuItem>
+              {makeValues.map(e => <MenuItem key={e} value={e}>{e}</MenuItem>)}
+            </Select>
+            Is Qualified <Checkbox
+              checked={filterParams.isQualified}
+              onChange={handleChange}
+              inputProps={{ 'aria-label': 'controlled' }}
+            />
+          </div>
 
-     </div>
+      <div>
+      <Button variant="outlined" color="error" onClick={handDelete}>Delete</Button>
+      <Button variant="outlined" className="add_btn" onClick={e => dispatch(exportData())}>Export</Button>
+
+      </div>
+        </div>
         <DataGrid
           rows={rows}
           rowCount={page.total}
@@ -215,7 +242,6 @@ export function CarComponent() {
           }}
         />
       </div>
-
     </>
   );
 }

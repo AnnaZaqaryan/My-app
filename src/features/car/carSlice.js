@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { fethAllMakes } from '../crawlerParams/filterApiValues';
-import { exportDataApi, fethAllCars } from './carApi';
+import { deletCarsApi, exportDataApi, fethAllCars } from './carApi';
 
 
 
@@ -17,9 +17,13 @@ const initialState = {
     sort : {
       field : "qualifiedTime",
       dir : "desc"
-    }
+    },
+    
   },
+
+  carIdsToDelate : [],
   allMakeValues : [],
+
 };
 
 export const getAllMakes = createAsyncThunk(
@@ -50,6 +54,18 @@ export const getAllCars = createAsyncThunk(
   }
 );
 
+export const deleteCars = createAsyncThunk(
+ 'car/deletCars',
+ async ( ids, { getState, dispatch}) => {
+
+  const state = getState();
+    const response = await deletCarsApi(state.car.carIdsToDelate);
+    dispatch(getAllCars())
+    return response;
+  }
+);
+
+
 export const carSlice = createSlice({
   name: 'car',
   initialState,
@@ -77,6 +93,14 @@ export const carSlice = createSlice({
       action.asyncDispatch(getAllCars());
     },
 
+    addDelateId: (state, action) => {
+      state.carIdsToDelate.push(action.payload);
+      
+    },
+
+    removeDelatedId: (state, action) =>{
+      state.carIdsToDelate =  state.carIdsToDelate.filter(e => e != action.payload);
+    }
 
   },
   // The `extraReducers` field lets the slice handle actions defined elsewhere,
@@ -99,7 +123,7 @@ export const carSlice = createSlice({
   },
 });
 
-export const { changePage,changeMake, incrementByAmount, changeSort , changeIsQualified} = carSlice.actions;
+export const { changePage,changeMake, incrementByAmount, changeSort , changeIsQualified, addDelateId, removeDelatedId} = carSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

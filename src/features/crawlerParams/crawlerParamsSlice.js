@@ -6,7 +6,7 @@ import { fethAllMakes } from './filterApiValues';
 
 const initialState = {
   paramData : {
-    
+
       postalCode: '',
       distanceKm: '',
       minYear: null,
