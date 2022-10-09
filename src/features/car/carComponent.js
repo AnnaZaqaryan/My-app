@@ -28,8 +28,7 @@ export function CarComponent() {
 
 
   const handleDelateCheckbox = (event, id) => {
-    console.log("idddd " + id);
-    console.log("evtn  " + event.target.checked)
+
     if (event.target.checked) {
 
       dispatch(addDelateId(id))
@@ -80,7 +79,7 @@ export function CarComponent() {
       ),
     },
     {
-      field: 'vin', headerName: 'VIN', width: 200,
+      field: 'vin', headerName: 'VIN', width: 160,
 
       renderCell: (params) => (
         <Tooltip title={params.row.vin} >
@@ -88,6 +87,42 @@ export function CarComponent() {
         </Tooltip>
       ),
     },
+
+    {
+      field: 'priceCad', headerName: 'Website Price (CAD)', width: 150,
+      renderCell: (params) => (
+        <Tooltip title={params.row.priceCad} >
+          <span className="table-cell-trucate">{params.row.priceCad}</span>
+        </Tooltip>
+      ),
+    },
+
+    {
+      field: 'convertedPrice', headerName: 'Logic Price (CAD)', width: 150,
+      renderCell: (params) => (
+        <Tooltip title={params.row.convertedPrice} >
+          <span className="table-cell-trucate">{params.row.convertedPrice}</span>
+        </Tooltip>
+      ),
+    },
+    
+    {
+      field: 'mmrPriceUsd', headerName: 'MMR Price (USD)', width: 130,
+      renderCell: (params) => (
+        <Tooltip title={params.row.mmrPriceUsd} >
+          <span className="table-cell-trucate">{params.row.mmrPriceUsd}</span>
+        </Tooltip>
+      ),
+    },
+    {
+      field: 'convertedRate', headerName: 'Conversion Rate', width: 130,
+      renderCell: (params) => (
+        <Tooltip title={params.row.convertedRate} >
+          <span className="table-cell-trucate">{params.row.convertedRate}</span>
+        </Tooltip>
+      ),
+    },
+
     {
       field: 'mileageKm', headerName: 'KMs', width: 100,
       renderCell: (params) => (
@@ -105,55 +140,6 @@ export function CarComponent() {
       ),
     },
     {
-      field: 'priceCad', headerName: 'Website Price (CAD)', width: 150,
-      renderCell: (params) => (
-        <Tooltip title={params.row.priceCad} >
-          <span className="table-cell-trucate">{params.row.priceCad}</span>
-        </Tooltip>
-      ),
-    },
-    {
-      field: 'priceUsd', headerName: 'Price Usd', width: 100,
-      renderCell: (params) => (
-        <Tooltip title={params.row.priceUsd} >
-          <span className="table-cell-trucate">{params.row.priceUsd}</span>
-        </Tooltip>
-      ),
-    },
-    {
-      field: 'mmrPriceUsd', headerName: 'MMR PriceUsd', width: 130,
-      renderCell: (params) => (
-        <Tooltip title={params.row.mmrPriceUsd} >
-          <span className="table-cell-trucate">{params.row.mmrPriceUsd}</span>
-        </Tooltip>
-      ),
-    },
-    {
-      field: 'convertedRate', headerName: 'MMR Price (USD)', width: 130,
-      renderCell: (params) => (
-        <Tooltip title={params.row.convertedRate} >
-          <span className="table-cell-trucate">{params.row.convertedRate}</span>
-        </Tooltip>
-      ),
-    },
-    {
-      field: 'convertedPrice', headerName: 'Logic Price (CAD)', width: 150,
-      renderCell: (params) => (
-        <Tooltip title={params.row.convertedPrice} >
-          <span className="table-cell-trucate">{params.row.convertedPrice}</span>
-        </Tooltip>
-      ),
-    },
-
-    {
-      field: 'isQualified', headerName: 'isQualified', width: 100,
-      renderCell: (params) => (
-        <Tooltip title={params.row.isQualified} >
-          <span className="table-cell-trucate">{'' + params.row.isQualified}</span>
-        </Tooltip>
-      ),
-    },
-    {
       field: 'qualifiedTime', headerName: 'Qualified Time', width: 130,
       renderCell: (params) => (
         <Tooltip title={params.row.qualifiedTime} >
@@ -162,7 +148,7 @@ export function CarComponent() {
       ),
     },
     {
-      field: 'scrapedTime', headerName: 'Crawl Time', width: 200,
+      field: 'scrapedTime', headerName: 'Crawl Time', width: 150,
       renderCell: (params) => (
         <Tooltip title={params.row.scrapedTime} >
           <span className="table-cell-trucate">{params.row.scrapedTime}</span>
