@@ -2,7 +2,7 @@
 import { axClinet } from "../../axiosUtil"
 
 export function fethAllCars(data) {
-  return axClinet.get(`/api/listings?isQualified=${data.isQualified}&make=${data.make}&page=${data.currentPage}&size=10&sortBy=${data.sort.field}&sortDir=${data.sort.dir}`)
+  return axClinet.get(`/api/websites?&page=${data.currentPage}&size=10&sortBy=${data.sort.field}&sortDir=${data.sort.dir}&country=${data.country}&foundKey=${data.foundKey}`)
     .then(response => {
       return response.data
     })
@@ -11,7 +11,7 @@ export function fethAllCars(data) {
 
 
 export function exportDataApi(data) {
-  return axClinet.get(`api/listings-export?isQualified=${data.isQualified}&make=${data.make}`, { responseType: 'blob' })
+  return axClinet.get(`api/websites-export?&country=${data.country}&foundKey=${data.foundKey}`, { responseType: 'blob' })
     .then(response => {
       const href = URL.createObjectURL(response.data);
 

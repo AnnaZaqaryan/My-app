@@ -8,3 +8,13 @@ export function fethAllMakes() {
     })
 
 }
+
+
+export function fethAllCountry() {
+    
+  return axClinet.get(`/api/countries`)
+    .then(response => {
+      return response.data
+    })
+
+}

@@ -2,6 +2,7 @@
 import { Button, Chip, TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { selectAllCountryValues } from '../car/carSlice';
 
 
 import {
@@ -19,6 +20,7 @@ export function CrawlerParamComponent() {
   const [make, setMake] = useState('');
 
   const makeValues = useSelector(selectMakeValues);
+  const countryValues = useSelector(selectAllCountryValues);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -35,7 +37,7 @@ export function CrawlerParamComponent() {
 
   return (
     <div className="crawler_param_component">
-      <div className="crawler_param_item">
+      {/* <div className="crawler_param_item">
         <p>Postal Code</p>
         <TextField
           label="Postal code"
@@ -98,7 +100,7 @@ export function CrawlerParamComponent() {
           onChange={event => dispatch(changeMaxMileageKm(event.target.value))}
           variant="filled"
         />
-      </div>
+      </div> */}
 
       <div className="make_item">
         <div className="crawler_param_item">

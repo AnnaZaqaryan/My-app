@@ -1,21 +1,23 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fethAllMakes } from '../crawlerParams/filterApiValues';
+import { fethAllCountry, fethAllMakes } from '../crawlerParams/filterApiValues';
 import { deletCarsApi, exportDataApi, fethAllCars } from './carApi';
 
 
 
 const initialState = {
   page : {
-    listings :[],
+    websites :[],
     total : 0
   },
 
   filterParams : {
     currentPage : 0,
     make : '',
+    country: '',
+    foundKey : '',
     isQualified : true,
     sort : {
-      field : "qualifiedTime",
+      field : "id",
       dir : "desc"
     },
     
@@ -23,6 +25,7 @@ const initialState = {
 
   carIdsToDelate : [],
   allMakeValues : [],
+  allCountryValues : []
 
 };
 
@@ -30,6 +33,14 @@ export const getAllMakes = createAsyncThunk(
   'car/getAllMakes',
   async () => {
     const response = await fethAllMakes()
+    return response;
+  }
+);
+
+export const getAllCountry = createAsyncThunk(
+  'car/getAllCountry',
+  async () => {
+    const response = await fethAllCountry()
     return response;
   }
 );
@@ -83,6 +94,16 @@ export const carSlice = createSlice({
       action.asyncDispatch(getAllCars());
     },
 
+    changeCountry : (state, action) => {
+      state.filterParams.country  = action.payload;
+      action.asyncDispatch(getAllCars());
+    },
+
+    changeFoundKey : (state, action) => {
+      state.filterParams.foundKey  = action.payload;
+      action.asyncDispatch(getAllCars());
+    },
+
     changeSort : (state, action) => {
       state.filterParams.sort  = action.payload;
       action.asyncDispatch(getAllCars());
@@ -118,12 +139,16 @@ export const carSlice = createSlice({
       .addCase(getAllMakes.fulfilled, (state, action) => {
         state.allMakeValues  = action.payload;
       })
+
+      .addCase(getAllCountry.fulfilled, (state, action) => {
+        state.allCountryValues  = action.payload;
+      })
      
       ;
   },
 });
 
-export const { changePage,changeMake, incrementByAmount, changeSort , changeIsQualified, addDelateId, removeDelatedId} = carSlice.actions;
+export const { changePage,changeMake, changeFoundKey, changeCountry, incrementByAmount, changeSort , changeIsQualified, addDelateId, removeDelatedId} = carSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
@@ -131,6 +156,7 @@ export const { changePage,changeMake, incrementByAmount, changeSort , changeIsQu
 export const selectCarPage = (state) => state.car.page;
 export const selectFilterParam = (state) => state.car.filterParams;
 export const selectAllMakeFilterValues = (state) => state.car.allMakeValues;
+export const selectAllCountryValues = (state) => state.car.allCountryValues;
 
 
 

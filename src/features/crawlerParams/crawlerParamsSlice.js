@@ -108,12 +108,7 @@ export const crawlerParamsSlice = createSlice({
       })
       .addCase(updateCrawlerParams.fulfilled, (state, action) => {
         state.showPopup = true;
-      })
-      
-
-      
-
-      ;
+      });
   },
 });
 

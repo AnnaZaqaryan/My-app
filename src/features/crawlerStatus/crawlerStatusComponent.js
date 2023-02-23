@@ -25,7 +25,7 @@ export function CrawlerStatusComponent() {
       {
         statuses.map((e, index) => (
           <div key={index} className="crawler_status_item" >
-            <p>{e.state} </p>
+            <p>{e.type} </p>
             <p>{e.status}</p>
             <p>{e.lastUpd}</p>
           </div>
