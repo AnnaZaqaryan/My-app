@@ -40,33 +40,18 @@ export function CarComponent() {
   };
 
   const columns = [
-    // {
-    //   field: 'id', headerName: '', width: 80,
-    //   renderCell: (params) => (
-    //     <Checkbox
-    //       onChange={event => handleDelateCheckbox(event, params.row.id)}
-    //       inputProps={{ 'aria-label': 'controlled' }}
-    //     />
-    //   ),
-    // },
+
+    {},
     {
-      field: 'id', headerName: 'id', width: 130,
-      renderCell: (params) => (
-        <Tooltip title={params.row.id} >
-          <span className="table-cell-trucate">{params.row.id}</span>
-        </Tooltip>
-      ),
-    },
-    {
-      field: 'webUrl', headerName: 'webUrl', width: 230,
+      field: 'webUrl', headerName: 'Website', width: 300,
       renderCell: (params) => (
         <Tooltip title={params.row.webUrl} >
-          <span className="table-cell-trucate">{params.row.webUrl}</span>
+          <a href={params.row.webUrl} className="table-cell-trucate">{params.row.webUrl}</a>
         </Tooltip>
       ),
     },
     {
-      field: 'country', headerName: 'country', width: 90,
+      field: 'country', headerName: 'Country', width: 200,
       renderCell: (params) => (
         <Tooltip title={params.row.country} >
           <span className="table-cell-trucate">{params.row.country}</span>
@@ -74,7 +59,7 @@ export function CarComponent() {
       ),
     },
     {
-      field: 'countryFlag', headerName: 'countryFlag', width: 90,
+      field: 'countryFlag', headerName: 'Flag', width: 250,
       renderCell: (params) => (
         <Tooltip title={params.row.countryFlag} >
           <span className="table-cell-trucate">{params.row.countryFlag}</span>
@@ -82,14 +67,13 @@ export function CarComponent() {
       ),
     },
     {
-      field: 'created', headerName: 'created', width: 90,
+      field: 'created', headerName: 'Scraped', width: 300,
       renderCell: (params) => (
         <Tooltip title={params.row.created} >
           <span className="table-cell-trucate">{params.row.created}</span>
         </Tooltip>
       ),
     }
-  
   ];
 
 
@@ -117,7 +101,7 @@ export function CarComponent() {
         </Grid>
       </Grid>
 
-      <div style={{ height: 700, width: '100%', fontSize: '18px' }}>
+      <div style={{ height: 700, width: '100%',  maxWidth: '1200px',  fontSize: '18px' }}>
         <div className='car_component'>
           <div className="car_component_item">
             Country <Select
@@ -133,7 +117,7 @@ export function CarComponent() {
               {countryValues.map(e => <MenuItem key={e} value={e}>{e}</MenuItem>)}
             </Select>
 
-            Found key  <input  className="car_component_input" onChange={event => dispatch(changeFoundKey(event.target.value))}></input>
+            Found Keyword  <input  className="car_component_input" onChange={event => dispatch(changeFoundKey(event.target.value))}></input>
             {/* 
             Is Qualified <Checkbox
               checked={filterParams.isQualified}
@@ -151,7 +135,7 @@ export function CarComponent() {
         <DataGrid
           rows={rows}
           rowCount={page.total}
-          page={1}
+          page={filterParams.currentPage}
           columns={columns}
           pageSize={10}
           paginationMode="server"

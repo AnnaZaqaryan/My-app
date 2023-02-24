@@ -84,6 +84,7 @@ export const carSlice = createSlice({
   reducers: {
 
     changePage: (state, action ) => {
+      
       state.filterParams.currentPage  = action.payload;
       
       action.asyncDispatch(getAllCars());

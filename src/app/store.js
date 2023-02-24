@@ -5,6 +5,7 @@ import calcParamReducer from '../features/calcParams/calcParamsSlice';
 import crawlerParamReducer from '../features/crawlerParams/crawlerParamsSlice';
 import crawlerStatusReducer from '../features/crawlerStatus/crawlerStatusSlice';
 import popupReducer from '../features/popup/popupSlice';
+import keyReducer from '../features/key/keySlice'
 import { asyncDispatchMiddleware } from './asyncDispatchMiddleware';
 
 
@@ -15,7 +16,8 @@ export const store = configureStore({
     calcParams : calcParamReducer,
     crawlerParams : crawlerParamReducer,
     crawlerStatus : crawlerStatusReducer,
-    popup : popupReducer
+    popup : popupReducer,
+    key : keyReducer
 
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(asyncDispatchMiddleware)

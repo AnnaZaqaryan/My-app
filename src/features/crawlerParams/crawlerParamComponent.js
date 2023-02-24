@@ -3,6 +3,7 @@ import { Button, Chip, TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAllCountryValues } from '../car/carSlice';
+import { addNewKey, getAllKeys, removeKey, selectAllKeys } from '../key/keySlice';
 
 
 import {
@@ -16,6 +17,7 @@ import './styles.css';
 export function CrawlerParamComponent() {
 
   const crawlerParams = useSelector(selectCrawlerParams);
+  const keys = useSelector(selectAllKeys);
 
   const [make, setMake] = useState('');
 
@@ -25,13 +27,15 @@ export function CrawlerParamComponent() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCrawlerParams())
-    dispatch(getAllMakes())
+    
+    dispatch(getAllKeys())
   }, []);
 
 
   const handleDelete = (make) => {
 
-    dispatch(removeMake(make))
+    dispatch(removeKey(make));
+ 
   };
 
 
@@ -114,14 +118,14 @@ export function CrawlerParamComponent() {
           />
         </div>
         <div>
-          <Button variant="outlined" className="add_btn" onClick={e => dispatch(addNewMake(make))}>Add</Button>
+          <Button variant="outlined" className="add_btn" onClick={e => dispatch(addNewKey(make))}>Add</Button>
         </div>
 
       </div>
       <div className="crawler_item">
 
         <div className="chip">
-          {crawlerParams.makes.map((e) => (
+          {keys.map((e) => (
             <Chip key={e}
               label={e}
               variant="outlined"
@@ -131,7 +135,7 @@ export function CrawlerParamComponent() {
 
         </div>
 
-        <Button variant="outlined" className="crawler_param_btn" onClick={e => dispatch(updateCrawlerParams())}>Update</Button>
+        {/* <Button variant="outlined" className="crawler_param_btn" onClick={e => dispatch(updateCrawlerParams())}>Update</Button> */}
       </div>
 
     </div>
