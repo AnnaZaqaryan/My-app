@@ -7,12 +7,12 @@ import { fethAllMakes } from './filterApiValues';
 const initialState = {
   paramData : {
 
-      postalCode: '',
-      distanceKm: '',
-      minYear: null,
-      maxYear: null,
-      minMileageKm: null,
-      maxMileageKm: null,
+      // postalCode: '',
+      // distanceKm: '',
+      // minYear: null,
+      // maxYear: null,
+      // minMileageKm: null,
+      // maxMileageKm: null,
     makes: [
 
     ]

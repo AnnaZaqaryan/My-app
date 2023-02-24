@@ -1,4 +1,5 @@
 
+
 import { axClinet } from "../../axiosUtil"
 
 export function fethCrawlerParms() {
@@ -18,4 +19,27 @@ export function updateCrawlerParmsPost(data) {
     })
 
 }
+
+
+// import { axClinet } from "../../axiosUtil"
+
+// export function fethCrawlerParms() {
+//   return axClinet.get(`api/check-keys`)
+//     .then(response => {
+//       return response.data
+//     })
+
+// }
+
+
+// export function updateCrawlerParmsPost(data) {
+
+//   return axClinet.post(`api/check-keys`, data)
+//     .then(response => {
+//       return response.data
+//     })
+// }
+
+
+
 

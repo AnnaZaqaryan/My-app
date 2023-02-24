@@ -21,4 +21,10 @@
     align-items: center;
     justify-content: space-between;
 }
+.car_component_input{
+    outline: none;
+    width: 200px;
+    height: 34px;
+    margin: 20px 5px 40px 5px;
+}
 

@@ -50,7 +50,7 @@ export function CarComponent() {
     //   ),
     // },
     {
-      field: 'id', headerName: 'id', width: 90,
+      field: 'id', headerName: 'id', width: 130,
       renderCell: (params) => (
         <Tooltip title={params.row.id} >
           <span className="table-cell-trucate">{params.row.id}</span>
@@ -58,7 +58,7 @@ export function CarComponent() {
       ),
     },
     {
-      field: 'webUrl', headerName: 'webUrl', width: 90,
+      field: 'webUrl', headerName: 'webUrl', width: 230,
       renderCell: (params) => (
         <Tooltip title={params.row.webUrl} >
           <span className="table-cell-trucate">{params.row.webUrl}</span>
@@ -89,114 +89,11 @@ export function CarComponent() {
         </Tooltip>
       ),
     }
-    // {
-    //   field: 'year', headerName: 'Year',
-    //   renderCell: (params) => (
-    //     <Tooltip title={params.row.year} >
-    //       <span className="table-cell-trucate">{params.row.year}</span>
-    //     </Tooltip>
-    //   ),
-    // },
-    // {
-    //   field: 'model', headerName: 'Model', width: 90,
-    //   renderCell: (params) => (
-    //     <Tooltip title={params.row.model} >
-    //       <span className="table-cell-trucate">{params.row.model}</span>
-    //     </Tooltip>
-    //   ),
-    // },
-    // {
-    //   field: 'style', headerName: 'Style', width: 330,
-    //   renderCell: (params) => (
-    //     <Tooltip title={params.row.style} >
-    //       <span className="table-cell-trucate">{params.row.style}</span>
-    //     </Tooltip>
-    //   ),
-    // },
-    // {
-    //   field: 'vin', headerName: 'VIN', width: 160,
-
-    //   renderCell: (params) => (
-    //     <Tooltip title={params.row.vin} >
-    //       <span className="table-cell-trucate">{params.row.vin}</span>
-    //     </Tooltip>
-    //   ),
-    // },
-
-    // {
-    //   field: 'priceCad', headerName: 'Website Price (CAD)', width: 150,
-    //   renderCell: (params) => (
-    //     <Tooltip title={params.row.priceCad} >
-    //       <span className="table-cell-trucate">{params.row.priceCad}</span>
-    //     </Tooltip>
-    //   ),
-    // },
-
-    // {
-    //   field: 'convertedPrice', headerName: 'Logic Price (CAD)', width: 150,
-    //   renderCell: (params) => (
-    //     <Tooltip title={params.row.convertedPrice} >
-    //       <span className="table-cell-trucate">{params.row.convertedPrice}</span>
-    //     </Tooltip>
-    //   ),
-    // },
-    
-    // {
-    //   field: 'mmrPriceUsd', headerName: 'MMR Price (USD)', width: 130,
-    //   renderCell: (params) => (
-    //     <Tooltip title={params.row.mmrPriceUsd} >
-    //       <span className="table-cell-trucate">{params.row.mmrPriceUsd}</span>
-    //     </Tooltip>
-    //   ),
-    // },
-    // {
-    //   field: 'convertedRate', headerName: 'Conversion Rate', width: 130,
-    //   renderCell: (params) => (
-    //     <Tooltip title={params.row.convertedRate} >
-    //       <span className="table-cell-trucate">{params.row.convertedRate}</span>
-    //     </Tooltip>
-    //   ),
-    // },
-
-    // {
-    //   field: 'mileageKm', headerName: 'KMs', width: 100,
-    //   renderCell: (params) => (
-    //     <Tooltip title={params.row.mileageKm} >
-    //       <span className="table-cell-trucate">{params.row.mileageKm}</span>
-    //     </Tooltip>
-    //   ),
-    // },
-    // {
-    //   field: 'mileageMile', headerName: 'Miles', width: 100,
-    //   renderCell: (params) => (
-    //     <Tooltip title={params.row.mileageMile} >
-    //       <span className="table-cell-trucate">{params.row.mileageMile}</span>
-    //     </Tooltip>
-    //   ),
-    // },
-    // {
-    //   field: 'qualifiedTime', headerName: 'Qualified Time', width: 130,
-    //   renderCell: (params) => (
-    //     <Tooltip title={params.row.qualifiedTime} >
-    //       <span className="table-cell-trucate">{params.row.qualifiedTime}</span>
-    //     </Tooltip>
-    //   ),
-    // },
-    // {
-    //   field: 'scrapedTime', headerName: 'Crawl Time', width: 150,
-    //   renderCell: (params) => (
-    //     <Tooltip title={params.row.scrapedTime} >
-    //       <span className="table-cell-trucate">{params.row.scrapedTime}</span>
-    //     </Tooltip>
-    //   ),
-    // },
+  
   ];
 
-  
-  
+
   const rows = page.websites;
-  console.log(JSON.stringify(page))
-  console.log(JSON.stringify(rows))
 
   function handleChange(event) {
     dispatch(changeIsQualified(event.target.checked))
@@ -209,13 +106,13 @@ export function CarComponent() {
   return (
     <>
       <Grid container spacing={2}>
-        <Grid item xs={6} md={4}>
+        {/* <Grid item xs={6} md={4}>
           <CalcParamComponent />
-        </Grid>
-        <Grid item xs={6} md={4}>
+        </Grid> */}
+        <Grid item xs={6} md={4} xl={6}>
           <CrawlerParamComponent />
         </Grid>
-        <Grid item xs={6} md={4}>
+        <Grid item xs={6} md={4} xl={6}>
           <CrawlerStatusComponent />
         </Grid>
       </Grid>
@@ -236,7 +133,7 @@ export function CarComponent() {
               {countryValues.map(e => <MenuItem key={e} value={e}>{e}</MenuItem>)}
             </Select>
 
-            Found key <input   onChange={event => dispatch(changeFoundKey(event.target.value))}></input>
+            Found key  <input  className="car_component_input" onChange={event => dispatch(changeFoundKey(event.target.value))}></input>
             {/* 
             Is Qualified <Checkbox
               checked={filterParams.isQualified}

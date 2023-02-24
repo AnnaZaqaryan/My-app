@@ -12,34 +12,37 @@ export function CalcParamComponent() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCalcParams())
+    // dispatch(getCalcParams())
   }, []);
 
   return (
-    <div className="calc_param_component">
-      <div className="calc_param_input">
-        <p className="calc_param_input_title">MMR Minus Parameter ( USD )</p>
-        <TextField
-          label="MMR MinusParam USD"
-          id="filled-hidden-label-normal"
-          value={calParams.mmrMinusParamUSD}
-          variant="filled"
-          onChange={event => dispatch(changeUsdParam(event.target.value))}
-        />
-      </div>
-      <div className="calc_param_input">
-      <p className="calc_param_input_title">MMR Minus Converted Parameter ( CAD )</p>
-        <TextField
-          label="MMR MinusConvParam CAD"
-          id="filled-hidden-label-normal2"
-          value={calParams.mmrMinusConvParamCAD}
-          onChange={event => dispatch(changeCADParam(event.target.value))}
-          variant="filled"
-        />
-      </div>
-      <div className="calc_param_item">
-      <Button variant="outlined" className="calc_param_btn" onClick={e => dispatch(updateCalcParams())}>Update</Button>
-      </div>
+    <div>
+
     </div>
+    // <div className="calc_param_component">
+    //   <div className="calc_param_input">
+    //     <p className="calc_param_input_title">MMR Minus Parameter ( USD )</p>
+    //     <TextField
+    //       label="MMR MinusParam USD"
+    //       id="filled-hidden-label-normal"
+    //       value={calParams.mmrMinusParamUSD}
+    //       variant="filled"
+    //       onChange={event => dispatch(changeUsdParam(event.target.value))}
+    //     />
+    //   </div>
+    //   <div className="calc_param_input">
+    //   <p className="calc_param_input_title">MMR Minus Converted Parameter ( CAD )</p>
+    //     <TextField
+    //       label="MMR MinusConvParam CAD"
+    //       id="filled-hidden-label-normal2"
+    //       value={calParams.mmrMinusConvParamCAD}
+    //       onChange={event => dispatch(changeCADParam(event.target.value))}
+    //       variant="filled"
+    //     />
+    //   </div>
+    //   <div className="calc_param_item">
+    //   <Button variant="outlined" className="calc_param_btn" onClick={e => dispatch(updateCalcParams())}>Update</Button>
+    //   </div>
+    // </div>
   );
 }

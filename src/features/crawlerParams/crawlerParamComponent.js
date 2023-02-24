@@ -104,9 +104,9 @@ export function CrawlerParamComponent() {
 
       <div className="make_item">
         <div className="crawler_param_item">
-          <p>Make</p>
+          <p>Check Keys</p>
           <TextField
-            label="Make"
+            label="Check Keys"
             id="filled-hidden-labeld-istanceKm"
             value={make}
             onChange={event => setMake(event.target.value)}
