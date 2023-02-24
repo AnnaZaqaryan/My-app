@@ -11,8 +11,8 @@ export function fetchAllKeys() {
 
 
 export function addNewKeyReq(e) {
-  const ar = [];
-  ar.push(e)
+  const ar = e.split(',');
+  //ar.push(e)
   return axClinet.post(`/api/check-key-add`, ar)
     .then(response => {
       return response.data

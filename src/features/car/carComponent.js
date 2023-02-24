@@ -12,19 +12,22 @@ import { CrawlerParamComponent } from '../crawlerParams/crawlerParamComponent';
 import { CrawlerStatusComponent } from '../crawlerStatus/crawlerStatusComponent';
 
 import './styles.css';
+import { getAllKeys, selectAllKeys } from '../key/keySlice';
 
 
 export function CarComponent() {
 
   const page = useSelector(selectCarPage);
   const filterParams = useSelector(selectFilterParam);
-  const makeValues = useSelector(selectAllMakeFilterValues);
+  //const makeValues = useSelector(selectAllMakeFilterValues);
   const countryValues = useSelector(selectAllCountryValues);
+  const kyes =  useSelector(selectAllKeys);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCars())
-    dispatch(getAllCountry())
+    dispatch(getAllCountry());
+    dispatch(getAllKeys())
     // dispatch(getAllMakes())
   }, []);
 
@@ -46,7 +49,7 @@ export function CarComponent() {
       field: 'webUrl', headerName: 'Website', width: 300,
       renderCell: (params) => (
         <Tooltip title={params.row.webUrl} >
-          <a href={params.row.webUrl} className="table-cell-trucate">{params.row.webUrl}</a>
+          <a href={params.row.webUrl} target='_blank' className="table-cell-trucate">{params.row.id}</a>
         </Tooltip>
       ),
     },
@@ -62,7 +65,8 @@ export function CarComponent() {
       field: 'countryFlag', headerName: 'Flag', width: 250,
       renderCell: (params) => (
         <Tooltip title={params.row.countryFlag} >
-          <span className="table-cell-trucate">{params.row.countryFlag}</span>
+          {/* <span className="table-cell-trucate">{params.row.countryFlag}</span> */}
+          <img width='20' height='20' src={params.row.countryFlag}></img>
         </Tooltip>
       ),
     },
@@ -117,7 +121,21 @@ export function CarComponent() {
               {countryValues.map(e => <MenuItem key={e} value={e}>{e}</MenuItem>)}
             </Select>
 
-            Found Keyword  <input  className="car_component_input" onChange={event => dispatch(changeFoundKey(event.target.value))}></input>
+            Found Keyword 
+            
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={filterParams.foundKey}
+              label="Make"
+              // defaultValue={''}
+              className="car_component_select"
+              onChange={event => dispatch(changeFoundKey(event.target.value))}
+            >
+              <MenuItem key={'All'} value={''}>{'All'}</MenuItem>
+              {kyes.map(e => <MenuItem key={e} value={e}>{e}</MenuItem>)}
+            </Select>
+             {/* <input  className="car_component_input" onChange={event => dispatch(changeFoundKey(event.target.value))}></input> */}
             {/* 
             Is Qualified <Checkbox
               checked={filterParams.isQualified}
