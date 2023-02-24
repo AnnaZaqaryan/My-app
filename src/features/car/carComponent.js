@@ -54,7 +54,7 @@ export function CarComponent() {
       ),
     },
     {
-      field: 'country', headerName: 'Country', width: 200,
+      field: 'country', headerName: 'Country', width: 240,
       renderCell: (params) => (
         <Tooltip title={params.row.country} >
           <span className="table-cell-trucate">{params.row.country}</span>
@@ -62,16 +62,15 @@ export function CarComponent() {
       ),
     },
     {
-      field: 'countryFlag', headerName: 'Flag', width: 250,
+      field: 'countryFlag', headerName: 'Flag', width: 200,
       renderCell: (params) => (
         <Tooltip title={params.row.countryFlag} >
-          {/* <span className="table-cell-trucate">{params.row.countryFlag}</span> */}
           <img width='20' height='20' src={params.row.countryFlag}></img>
         </Tooltip>
       ),
     },
     {
-      field: 'created', headerName: 'Scraped', width: 300,
+      field: 'created', headerName: 'Scraped', width: 230,
       renderCell: (params) => (
         <Tooltip title={params.row.created} >
           <span className="table-cell-trucate">{params.row.created}</span>
@@ -93,19 +92,16 @@ export function CarComponent() {
 
   return (
     <>
-      <Grid container spacing={2}>
-        {/* <Grid item xs={6} md={4}>
-          <CalcParamComponent />
-        </Grid> */}
-        <Grid item xs={6} md={4} xl={6}>
+      <Grid container spacing={2} className="container">
+        <Grid item xs={6} md={6} xl={6}>
           <CrawlerParamComponent />
         </Grid>
-        <Grid item xs={6} md={4} xl={6}>
+        <Grid item xs={6} md={6} xl={6}>
           <CrawlerStatusComponent />
         </Grid>
       </Grid>
 
-      <div style={{ height: 700, width: '100%',  maxWidth: '1200px',  fontSize: '18px' }}>
+      <div style={{ height: 700, width: '100%',  maxWidth: '980px',  fontSize: '18px' }}>
         <div className='car_component'>
           <div className="car_component_item">
             Country <Select
@@ -113,7 +109,6 @@ export function CarComponent() {
               id="demo-simple-select"
               value={filterParams.country}
               label="Make"
-              // defaultValue={''}
               className="car_component_select"
               onChange={event => dispatch(changeCountry(event.target.value))}
             >
@@ -128,25 +123,17 @@ export function CarComponent() {
               id="demo-simple-select"
               value={filterParams.foundKey}
               label="Make"
-              // defaultValue={''}
               className="car_component_select"
               onChange={event => dispatch(changeFoundKey(event.target.value))}
             >
               <MenuItem key={'All'} value={''}>{'All'}</MenuItem>
               {kyes.map(e => <MenuItem key={e} value={e}>{e}</MenuItem>)}
             </Select>
-             {/* <input  className="car_component_input" onChange={event => dispatch(changeFoundKey(event.target.value))}></input> */}
-            {/* 
-            Is Qualified <Checkbox
-              checked={filterParams.isQualified}
-              onChange={handleChange}
-              inputProps={{ 'aria-label': 'controlled' }}
-            /> */}
           </div>
 
       <div>
       {/* <Button variant="outlined" color="error" onClick={handDelete}>Delete</Button> */}
-      <Button variant="outlined" className="add_btn" onClick={e => dispatch(exportData())}>Export</Button>
+      <Button  variant="contained" className="add_btn" onClick={e => dispatch(exportData())}>Export</Button>
 
       </div>
         </div>

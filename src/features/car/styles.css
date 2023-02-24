@@ -28,3 +28,6 @@
     margin: 20px 5px 40px 5px;
 }
 
+.container{
+    max-width: 980px;
+}

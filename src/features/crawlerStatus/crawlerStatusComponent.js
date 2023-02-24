@@ -24,14 +24,16 @@ export function CrawlerStatusComponent() {
     <div>
       {
         statuses.map((e, index) => (
-          <div key={index} className="crawler_status_item" >
+          <div key={index} className="crawler_status_item">
             <p>{e.type} </p>
             <p>{e.status}</p>
             <p>{e.lastUpd}</p>
           </div>
         ))
       }
-        <Button variant="outlined" onClick={updateStatus}> Refresh </Button>
+       <div className="btn">
+       <Button  variant="outlined" onClick={updateStatus}> Refresh </Button>
+       </div>
     </div>
   )
 }
