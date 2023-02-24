@@ -44,7 +44,7 @@ export function CarComponent() {
 
   const columns = [
 
-    {},
+    
     {
       field: 'webUrl', headerName: 'Website', width: 300,
       renderCell: (params) => (
