@@ -7,9 +7,7 @@ import { addNewKey, getAllKeys, removeKey, selectAllKeys } from '../key/keySlice
 
 
 import {
-  addNewMake,
-  changeDistanceKm, changeMaxMileageKm, changeMaxYear, changeMinMileageKm, changeMinYear, changePostalCode, getAllMakes,
-  getCrawlerParams, removeMake, selectCrawlerParams, selectMakeValues, updateCrawlerParams
+  getCrawlerParams,  selectCrawlerParams, selectMakeValues
 } from './crawlerParamsSlice';
 import './styles.css';
 

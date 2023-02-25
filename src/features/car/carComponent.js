@@ -44,8 +44,9 @@ export function CarComponent() {
 
   const columns = [
 
-    
     {
+      field: 'first',
+      headerAlign: 'center',
       field: 'webUrl', headerName: 'Website', width: 300,
       renderCell: (params) => (
         <Tooltip title={params.row.webUrl} >
@@ -54,7 +55,7 @@ export function CarComponent() {
       ),
     },
     {
-      field: 'country', headerName: 'Country', width: 240,
+      headerAlign: 'center', field: 'country', headerName: 'Country', width: 240,
       renderCell: (params) => (
         <Tooltip title={params.row.country} >
           <span className="table-cell-trucate">{params.row.country}</span>
@@ -62,15 +63,15 @@ export function CarComponent() {
       ),
     },
     {
-      field: 'countryFlag', headerName: 'Flag', width: 200,
+      headerAlign: 'center', field: 'countryFlag', headerName: 'Flag', width: 200,
       renderCell: (params) => (
         <Tooltip title={params.row.countryFlag} >
-          <img width='20' height='20' src={params.row.countryFlag}></img>
+          <img width='20' height='20' className="table-cell-trucate" src={params.row.countryFlag}></img>
         </Tooltip>
       ),
     },
     {
-      field: 'created', headerName: 'Scraped', width: 230,
+      headerAlign: 'center', field: 'created', headerName: 'Scraped', width: 230,
       renderCell: (params) => (
         <Tooltip title={params.row.created} >
           <span className="table-cell-trucate">{params.row.created}</span>

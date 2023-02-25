@@ -31,3 +31,7 @@
 .container{
     max-width: 980px;
 }
+
+.table-cell-trucate{
+    margin: 0 auto;
+}
