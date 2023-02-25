@@ -47,7 +47,7 @@ export function CarComponent() {
     {
       field: 'first',
       headerAlign: 'center',
-      field: 'webUrl', headerName: 'Website', width: 300,
+      field: 'webUrl', headerName: 'Website', width: 180,
       renderCell: (params) => (
         <Tooltip title={params.row.webUrl} >
           <a href={params.row.webUrl} target='_blank' className="table-cell-trucate">{params.row.id}</a>
@@ -55,7 +55,7 @@ export function CarComponent() {
       ),
     },
     {
-      headerAlign: 'center', field: 'country', headerName: 'Country', width: 240,
+      headerAlign: 'center', field: 'country', headerName: 'Country', width: 200,
       renderCell: (params) => (
         <Tooltip title={params.row.country} >
           <span className="table-cell-trucate">{params.row.country}</span>
@@ -63,13 +63,19 @@ export function CarComponent() {
       ),
     },
     {
-      headerAlign: 'center', field: 'countryFlag', headerName: 'Flag', width: 200,
+      headerAlign: 'center', field: 'countryFlag', headerName: 'Flag', width: 180,
       renderCell: (params) => (
           <img width='22' height='13' className="table-cell-trucate" src={params.row.countryFlag}></img>
       ),
     },
     {
-      headerAlign: 'center', field: 'created', headerName: 'Scraped', width: 230,
+      headerAlign: 'center', field: 'foundKey', headerName: 'Found Keyword', width: 180,
+      renderCell: (params) => (
+          <span className="table-cell-trucate">{params.row.foundKey}</span>
+      ),
+    },
+    {
+      headerAlign: 'center', field: 'created', headerName: 'Scraped', width: 200,
       renderCell: (params) => (
         <Tooltip title={params.row.created} >
           <span className="table-cell-trucate">{params.row.created}</span>
