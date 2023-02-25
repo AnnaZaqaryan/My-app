@@ -66,7 +66,7 @@ export function CarComponent() {
       headerAlign: 'center', field: 'countryFlag', headerName: 'Flag', width: 200,
       renderCell: (params) => (
         <Tooltip title={params.row.countryFlag} >
-          <img width='20' height='20' className="table-cell-trucate" src={params.row.countryFlag}></img>
+          <img width='22' height='13' className="table-cell-trucate" src={params.row.countryFlag}></img>
         </Tooltip>
       ),
     },
