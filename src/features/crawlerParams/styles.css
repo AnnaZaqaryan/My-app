@@ -7,7 +7,7 @@
 
 .make_item{
     display: flex;
-    align-items: unset;
+    align-items: flex-end;
 }
 
 .crawler_params_item > span{
@@ -16,6 +16,7 @@
 
 .crawler_param_item{
     display: flex;
+    flex-direction: column;
 }
 .crawler_param_item > p{
     width: 126px;
@@ -53,4 +54,11 @@
 
 .css-2bxn45 {
     padding: 34px 12px 8px !important;
+}
+
+.crawler_item{
+    display: flex;
+    align-items: initial;
+    position: relative;
+    bottom: 181px;
 }
