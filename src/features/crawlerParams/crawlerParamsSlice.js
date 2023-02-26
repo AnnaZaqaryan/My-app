@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { showPopup } from '../popup/popupSlice';
-import { fethCrawlerParms, updateCrawlerParmsPost } from './crawlerParamsApi';
+import {   } from './crawlerParamsApi';
 import { fethAllMakes } from './filterApiValues';
 
 
@@ -21,13 +21,13 @@ const initialState = {
   makeValues : [],
 };
 
-export const getCrawlerParams = createAsyncThunk(
-  'crawlerParams/getValues',
-  async ( arg, { getState }) => {
-    const response = await fethCrawlerParms();
-    return response;
-  }
-);
+// export const getCrawlerParams = createAsyncThunk(
+//   'crawlerParams/getValues',
+//   async ( arg, { getState }) => {
+//     const response = await fethCrawlerParms();
+//     return response;
+//   }
+// );
 
 
 export const getAllMakes = createAsyncThunk(
@@ -39,17 +39,17 @@ export const getAllMakes = createAsyncThunk(
 );
 
 
-export const updateCrawlerParams = createAsyncThunk(
-  'crawlerParams/updateParams',
-  async ( arg, { getState, dispatch }) => {
+// export const updateCrawlerParams = createAsyncThunk(
+//   'crawlerParams/updateParams',
+//   async ( arg, { getState, dispatch }) => {
 
-    const state = getState();
-    const response = await updateCrawlerParmsPost(state.crawlerParams.paramData);
-    dispatch(showPopup('Crawler params updated'));
+//     const state = getState();
+//     const response = await updateCrawlerParmsPost(state.crawlerParams.paramData);
+//     dispatch(showPopup('Crawler params updated'));
 
-    return response;
-  }
-);
+//     return response;
+//   }
+// );
 
 
 export const crawlerParamsSlice = createSlice({
@@ -95,20 +95,20 @@ export const crawlerParamsSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      .addCase(getCrawlerParams.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(getCrawlerParams.fulfilled, (state, action) => {
+      // .addCase(getCrawlerParams.pending, (state) => {
+      //   state.status = 'loading';
+      // })
+      // .addCase(getCrawlerParams.fulfilled, (state, action) => {
         
-        state.paramData  = action.payload;
-      })
+      //   state.paramData  = action.payload;
+      // })
 
       .addCase(getAllMakes.fulfilled, (state, action) => {
         state.makeValues  = action.payload;
       })
-      .addCase(updateCrawlerParams.fulfilled, (state, action) => {
-        state.showPopup = true;
-      });
+      // .addCase(updateCrawlerParams.fulfilled, (state, action) => {
+      //   state.showPopup = true;
+      // });
   },
 });
 

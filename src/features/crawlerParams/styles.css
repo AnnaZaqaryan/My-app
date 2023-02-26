@@ -7,7 +7,7 @@
 
 .make_item{
     display: flex;
-    align-items: flex-end;
+    align-items: unset;
 }
 
 .crawler_params_item > span{

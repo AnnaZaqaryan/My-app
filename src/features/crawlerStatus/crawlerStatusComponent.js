@@ -32,7 +32,7 @@ export function CrawlerStatusComponent() {
         ))
       }
        <div className="btn">
-       <Button  variant="outlined" onClick={updateStatus}> Refresh </Button>
+       <Button  variant="outlined" onClick={updateStatus}> Scraping Status </Button>
        </div>
     </div>
   )

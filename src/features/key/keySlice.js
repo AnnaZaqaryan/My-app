@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { addNewKeyReq, deleteKeyReq, fetchAllKeys } from './keyApi';
+import { getCrawlerStatus } from '../crawlerStatus/crawlerStatusSlice';
+import { fetchAllKeys, scrapApi, stopApi } from './keyApi';
 
 
 const initialState = {
@@ -15,12 +16,26 @@ export const getAllKeys = createAsyncThunk(
 );
 
 
-export const addNewKey = createAsyncThunk(
-  'key/addNewKey',
+// export const addNewKey = createAsyncThunk(
+//   'key/addNewKey',
+//   async ( arg, { getState, dispatch }) => {
+
+//     // const state = getState();
+//     const response = await addNewKeyReq(arg);
+//     dispatch(getAllKeys())
+//     // dispatch(showPopup('Crawler params updated'));
+
+//     return response;
+//   }
+// );
+
+export const scrap = createAsyncThunk(
+  'key/scrap',
   async ( arg, { getState, dispatch }) => {
 
     // const state = getState();
-    const response = await addNewKeyReq(arg);
+    const response = await scrapApi(arg);
+    dispatch(getCrawlerStatus())
     dispatch(getAllKeys())
     // dispatch(showPopup('Crawler params updated'));
 
@@ -29,19 +44,35 @@ export const addNewKey = createAsyncThunk(
 );
 
 
-
-export const removeKey = createAsyncThunk(
-  'key/removeKey',
+export const stop = createAsyncThunk(
+  'key/stop',
   async ( arg, { getState, dispatch }) => {
 
-    
-    const response = await deleteKeyReq(arg);
-    dispatch(getAllKeys())
+    // const state = getState();
+    const response = await stopApi(arg);
+    // dispatch(getAllKeys())
     // dispatch(showPopup('Crawler params updated'));
 
     return response;
   }
 );
+
+
+
+
+
+// export const removeKey = createAsyncThunk(
+//   'key/removeKey',
+//   async ( arg, { getState, dispatch }) => {
+
+    
+//     const response = await deleteKeyReq(arg);
+//     dispatch(getAllKeys())
+//     // dispatch(showPopup('Crawler params updated'));
+
+//     return response;
+//   }
+// );
 
 
 
