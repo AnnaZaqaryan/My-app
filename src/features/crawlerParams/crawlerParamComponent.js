@@ -43,7 +43,8 @@ export function CrawlerParamComponent() {
         <div className="crawler_param_item">
           <p>Scrape Keywords</p>
           <TextareaAutosize
-            label="by new line"
+            className="textarea"
+            placeholder="by new line ..."
             minRows="14"
             id="filled-hidden-labeld-istanceKm"
             value={make}

@@ -62,3 +62,6 @@
     position: relative;
     bottom: 181px;
 }
+.textarea{
+    padding: 8px;
+}
