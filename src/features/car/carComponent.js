@@ -126,6 +126,7 @@ export function CarComponent() {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
+              multiple
               value={filterParams.foundKey}
               label="Make"
               className="car_component_select"

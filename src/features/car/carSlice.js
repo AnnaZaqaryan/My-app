@@ -14,7 +14,7 @@ const initialState = {
     currentPage : 0,
     make : '',
     country: '',
-    foundKey : '',
+    foundKey : [],
     isQualified : true,
     sort : {
       field : "id",
@@ -102,6 +102,7 @@ export const carSlice = createSlice({
 
     changeFoundKey : (state, action) => {
       state.filterParams.foundKey  = action.payload;
+      console.log('222222222222   2' +   action.payload)
       action.asyncDispatch(getAllCars());
     },
 

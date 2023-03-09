@@ -2,7 +2,7 @@
 import { axClinet } from "../../axiosUtil"
 
 export function fethAllCars(data) {
-  return axClinet.get(`/api/websites?&page=${data.currentPage}&size=10&sortBy=${data.sort.field}&sortDir=${data.sort.dir}&country=${data.country}&foundKey=${data.foundKey}`)
+  return axClinet.get(`/api/websites?&page=${data.currentPage}&size=10&sortBy=${data.sort.field}&sortDir=${data.sort.dir}&country=${data.country}&foundKeys=${data.foundKey}`)
     .then(response => {
       return response.data
     })
