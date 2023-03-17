@@ -75,6 +75,12 @@ export function CarComponent() {
       ),
     },
     {
+      headerAlign: 'center', field: 'wordsCount', headerName: 'Words Count ', width: 180,
+      renderCell: (params) => (
+          <span className="table-cell-trucate">{params.row.wordsCount}</span>
+      ),
+    },
+    {
       headerAlign: 'center', field: 'created', headerName: 'Scraped', width: 200,
       renderCell: (params) => (
         <Tooltip title={params.row.created} >
