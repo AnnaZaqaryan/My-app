@@ -112,7 +112,7 @@ export function CarComponent() {
         </Grid>
       </Grid>
 
-      <div style={{ height: 700, width: '100%',  maxWidth: '980px',  fontSize: '18px' }}>
+      <div style={{ height: 700, width: '100%',  maxWidth: '1150px',  fontSize: '18px' }}>
         <div className='car_component'>
           <div className="car_component_item">
             Country <Select
