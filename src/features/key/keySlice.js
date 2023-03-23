@@ -32,14 +32,9 @@ export const getAllKeys = createAsyncThunk(
 export const scrap = createAsyncThunk(
   'key/scrap',
   async ( arg,  { getState, dispatch }) => {
-
-    // const state = getState();
-    console.log("arg is " + JSON.stringify(arg) )
     const response = await scrapApi(arg.scrapeKeywords, arg.ignoreKeywords, arg.urlMaxLength);
     dispatch(getCrawlerStatus())
     dispatch(getAllKeys())
-    // dispatch(showPopup('Crawler params updated'));
-
     return response;
   }
 );

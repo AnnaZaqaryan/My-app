@@ -51,7 +51,7 @@ export function CrawlerParamComponent() {
         </div>
 
         <div className="crawler_param_item">
-          <p>Ignored Keywords</p>
+          <p>Ignore Keywords</p>
           <TextareaAutosize
             className="textarea"
             placeholder="by new line ..."
@@ -70,7 +70,7 @@ export function CrawlerParamComponent() {
             value={urlMaxLength}
             onChange={event => setUrlMaxLength(event.target.value)}
             variant="filled"
-            style={{ width: "130px", outline: 'none' }}
+            style={{ width: "90px", outline: 'none' }}
           />
         </div>
        </div>
