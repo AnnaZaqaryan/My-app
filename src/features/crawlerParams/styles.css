@@ -4,6 +4,9 @@
     align-items:  flex-start;
     flex-direction: column;
 }
+.make_items{
+    display: flex;
+}
 
 .make_item{
     display: flex;
@@ -17,11 +20,13 @@
 .crawler_param_item{
     display: flex;
     flex-direction: column;
+    margin-right: 15px;
 }
 .crawler_param_item > p{
     width: 126px;
     font-size: 16px;
     text-align: start;
+    white-space: nowrap;
 }
 
 .crawler_param_chip{
@@ -60,7 +65,7 @@
     display: flex;
     align-items: initial;
     position: relative;
-    bottom: 181px;
+    bottom: 201px;
 }
 .textarea{
     padding: 8px;

@@ -4,7 +4,7 @@ import { fetchAllKeys, scrapApi, stopApi } from './keyApi';
 
 
 const initialState = {
- vals : []
+ vals : [],
 };
 
 export const getAllKeys = createAsyncThunk(
@@ -31,10 +31,11 @@ export const getAllKeys = createAsyncThunk(
 
 export const scrap = createAsyncThunk(
   'key/scrap',
-  async ( arg, { getState, dispatch }) => {
+  async ( arg,  { getState, dispatch }) => {
 
     // const state = getState();
-    const response = await scrapApi(arg);
+    console.log("arg is " + JSON.stringify(arg) )
+    const response = await scrapApi(arg.scrapeKeywords, arg.ignoreKeywords, arg.urlMaxLength);
     dispatch(getCrawlerStatus())
     dispatch(getAllKeys())
     // dispatch(showPopup('Crawler params updated'));
@@ -49,7 +50,7 @@ export const stop = createAsyncThunk(
   async ( arg, { getState, dispatch }) => {
 
     // const state = getState();
-    const response = await stopApi(arg);
+    const response = await stopApi();
     // dispatch(getAllKeys())
     // dispatch(showPopup('Crawler params updated'));
 

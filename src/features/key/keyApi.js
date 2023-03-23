@@ -10,17 +10,29 @@ export function fetchAllKeys() {
 }
 
 
-export function scrapApi(e) {
-  const ar = e.split('\n');
-  //ar.push(e)
-  return axClinet.post(`/scrape/scr-start`, ar)
+export function scrapApi(scrapKeywords, ignoreKeywords, urlMaxLength) {
+
+
+
+  const scrapedKeywordsAr = scrapKeywords.split('\n');
+ 
+  const ignoreKeywordsAr = ignoreKeywords.split('\n');
+
+
+  const obj  = {
+    scrapeKeywords :scrapedKeywordsAr,
+    ignoreKeywords: ignoreKeywordsAr,
+    urlMaxLength : urlMaxLength
+  }
+
+  return axClinet.post(`/scrape/scr-start`, obj)
     .then(response => {
       return response.data
     })
 
 }
 
-export function stopApi(e) {
+export function stopApi() {
   
   //ar.push(e)
   return axClinet.get(`/scrape/scr-stop`)
